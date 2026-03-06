@@ -1,0 +1,981 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Palash Srivastava | Head of Platform & DevOps Leader</title>
+    <meta
+      name="description"
+      content="Palash Srivastava — Hands-on reliability and platform leader with 9+ years building and operating scalable, production-grade infrastructure. Head of Platform | DevOps Manager | SRE."
+    />
+    <meta
+      name="keywords"
+      content="DevOps, SRE, Platform Engineering, AWS, Kubernetes, CI/CD, Cloud Infrastructure"
+    />
+    <meta
+      property="og:title"
+      content="Palash Srivastava | Platform & DevOps Leader"
+    />
+    <meta
+      property="og:description"
+      content="9+ years building scalable, production-grade infrastructure. Open to new opportunities."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ─── NAV ─── -->
+    <nav id="navbar">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">PS<span class="dot">.</span></a>
+        <ul class="nav-links">
+          <li><a href="#about" id="nav-about">About</a></li>
+          <li><a href="#experience" id="nav-experience">Experience</a></li>
+          <li><a href="#skills" id="nav-skills">Skills</a></li>
+          <li><a href="#education" id="nav-education">Education</a></li>
+          <li><a href="#contact" id="nav-contact">Contact</a></li>
+        </ul>
+        <a href="resume.pdf" download class="btn-resume" id="download-resume"
+          >Download CV</a
+        >
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <section id="hero">
+      <div class="hero-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="grid-overlay"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="status-dot"></span>
+          Available for new opportunities
+        </div>
+        <h1 class="hero-name">
+          Palash<br /><span class="gradient-text">Srivastava</span>
+        </h1>
+        <p class="hero-title">
+          Head of Platform &bull; DevOps Manager &bull; Site Reliability
+        </p>
+        <p class="hero-sub">
+          Hands-on reliability and platform leader with
+          <strong>9+ years</strong> building and operating scalable,
+          production-grade infrastructure.
+        </p>
+        <div class="hero-actions">
+          <a href="#experience" class="btn-primary" id="hero-cta"
+            >View My Work</a
+          >
+          <a href="#contact" class="btn-ghost" id="hero-contact"
+            >Get in Touch</a
+          >
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">9+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">50%</span>
+            <span class="stat-label">AWS Cost Reduction</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">70%</span>
+            <span class="stat-label">Faster Deployments</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">5×</span>
+            <span class="stat-label">Traffic Scale</span>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" id="scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ─── ABOUT ─── -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-label">01 — About</div>
+        <h2 class="section-title">
+          Building Systems <br />That
+          <span class="gradient-text">Actually Work</span>
+        </h2>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              I'm a platform and reliability engineer who thrives at the
+              intersection of infrastructure, automation, and developer
+              productivity. From re-architecting cloud systems to leading SOC 2
+              readiness, I turn complex operational challenges into elegant,
+              scalable solutions.
+            </p>
+            <p>
+              Currently based in <strong>New York</strong>, I've worked across
+              fintech, blockchain security, and AI-native SaaS companies —
+              always with a focus on shipping reliable software fast, without
+              the toil.
+            </p>
+            <p>
+              Outside the terminal, I geek out over distributed systems, IoT
+              experiments, and obsessing over deployment velocity metrics.
+            </p>
+            <div class="about-links">
+              <a
+                href="https://linkedin.com/in/srivastavapalash"
+                class="social-link"
+                id="linkedin-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  />
+                </svg>
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/srivastava-palash"
+                class="social-link"
+                id="github-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="mailto:srivastavapalash0@gmail.com"
+                class="social-link"
+                id="email-link"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"
+                  />
+                </svg>
+                Email
+              </a>
+            </div>
+          </div>
+          <div class="about-card-wrap">
+            <div class="about-card" id="about-card">
+              <div class="card-inner">
+                <div class="card-avatar">
+                  <div class="avatar-initials">PS</div>
+                </div>
+                <div class="card-details">
+                  <h3>Palash Srivastava</h3>
+                  <p>Head of Platform @ Constrafor</p>
+                  <div class="card-tags">
+                    <span>AWS</span>
+                    <span>Kubernetes</span>
+                    <span>CI/CD</span>
+                    <span>Terraform</span>
+                    <span>Datadog</span>
+                    <span>SOC 2</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── EXPERIENCE ─── -->
+    <section id="experience" class="section section-dark">
+      <div class="container">
+        <div class="section-label">02 — Experience</div>
+        <h2 class="section-title">
+          Where I've <span class="gradient-text">Made Impact</span>
+        </h2>
+        <div class="timeline" id="timeline">
+          <div class="timeline-item" id="exp-constrafor">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="exp-header">
+                <div>
+                  <h3 class="exp-company">Constrafor</h3>
+                  <p class="exp-role">Head of Platform &bull; DevOps Manager</p>
+                </div>
+                <span class="exp-badge current">Current</span>
+              </div>
+              <p class="exp-date">
+                📍 New York, USA &nbsp;|&nbsp; June 2024 – Present
+              </p>
+              <ul class="exp-bullets">
+                <li>
+                  Drove SOC 2 Type II readiness by establishing security
+                  policies/processes and hardening infrastructure through
+                  remediation of security findings
+                </li>
+                <li>
+                  Reduced AWS spend by <strong>50% monthly</strong> through
+                  architectural optimization
+                </li>
+                <li>
+                  Led re-architecture of the core backend to support
+                  <strong>5× traffic growth</strong>
+                </li>
+                <li>
+                  Partnered with product, design, and engineering on platform
+                  roadmap
+                </li>
+                <li>
+                  Re-architected daily releases through CI/CD redesign,
+                  accelerating delivery velocity
+                </li>
+                <li>
+                  Orchestrated cloud infrastructure, deployment pipelines, and
+                  runtime operations for the Cru AI agent
+                </li>
+                <li>
+                  Improved developer experience by enabling on-demand PR-based
+                  review environments
+                </li>
+                <li>
+                  Owned and executed GitLab-to-GitHub migration, achieving
+                  <strong>70% reduction in deployment time</strong>
+                </li>
+              </ul>
+              <div class="exp-tags">
+                <span>AWS</span><span>GitHub Actions</span><span>Terraform</span
+                ><span>SOC 2</span><span>Kubernetes</span><span>Datadog</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item" id="exp-certik">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="exp-header">
+                <div>
+                  <h3 class="exp-company">CertiK</h3>
+                  <p class="exp-role">Sr. Platform Engineer</p>
+                </div>
+                <span class="exp-badge">6 months</span>
+              </div>
+              <p class="exp-date">
+                📍 New York, USA &nbsp;|&nbsp; Nov 2023 – May 2024
+              </p>
+              <ul class="exp-bullets">
+                <li>
+                  Conducted AWS service review, achieving a
+                  <strong>15% reduction</strong> in overall costs
+                </li>
+                <li>
+                  Enhanced AWS security by remediating vulnerabilities and
+                  ensuring compliance
+                </li>
+                <li>
+                  Negotiated vendor contracts seeking efficiencies and
+                  continuity
+                </li>
+              </ul>
+              <div class="exp-tags">
+                <span>AWS</span><span>Security</span
+                ><span>Cost Optimization</span><span>Compliance</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item" id="exp-ts-devops">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="exp-header">
+                <div>
+                  <h3 class="exp-company">TS Imagine</h3>
+                  <p class="exp-role">
+                    Cloud DevOps Engineer &bull; Software Engineer
+                  </p>
+                </div>
+                <span class="exp-badge">2 years</span>
+              </div>
+              <p class="exp-date">
+                📍 New York, USA &nbsp;|&nbsp; Jan 2022 – Nov 2023
+              </p>
+              <ul class="exp-bullets">
+                <li>
+                  Developed and integrated central monitoring using Prometheus
+                  and Grafana
+                </li>
+                <li>
+                  Led a POC to migrate VaR calculations from on-premises to GCP,
+                  resulting in a <strong>20% efficiency increase</strong> and
+                  <strong>30% cost reduction</strong>
+                </li>
+                <li>
+                  Scripted Jenkins pipeline and agents to do end-to-end
+                  deployment of Risk Product
+                </li>
+                <li>
+                  Designed technical infrastructure design documents for cloud
+                  migration
+                </li>
+                <li>
+                  Migrated DEV and PPE infrastructure from Docker Swarm to GKE
+                </li>
+              </ul>
+              <div class="exp-tags">
+                <span>GCP</span><span>Kubernetes</span><span>Jenkins</span
+                ><span>Prometheus</span><span>Grafana</span><span>Docker</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item" id="exp-ts-sre">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="exp-header">
+                <div>
+                  <h3 class="exp-company">TS Imagine (Imagine Software)</h3>
+                  <p class="exp-role">Site Reliability Engineer</p>
+                </div>
+                <span class="exp-badge">2+ years</span>
+              </div>
+              <p class="exp-date">
+                📍 New York, USA &nbsp;|&nbsp; Sept 2019 – Dec 2021
+              </p>
+              <ul class="exp-bullets">
+                <li>
+                  Redesigned production for site-awareness, cutting disaster
+                  fail-over time by <strong>70%</strong>
+                </li>
+                <li>
+                  Implemented proactive monitoring, alerting and trend analysis
+                  using Python
+                </li>
+                <li>
+                  Administered and deployed Docker Swarm across dev, UAT and
+                  prod environments
+                </li>
+                <li>
+                  Resolved production incidents and implemented preventative
+                  solutions
+                </li>
+              </ul>
+              <div class="exp-tags">
+                <span>SRE</span><span>Docker Swarm</span><span>Python</span
+                ><span>Monitoring</span><span>Incident Response</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item" id="exp-fis-pa">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="exp-header">
+                <div>
+                  <h3 class="exp-company">FIS</h3>
+                  <p class="exp-role">Programmer Analyst</p>
+                </div>
+                <span class="exp-badge">4 months</span>
+              </div>
+              <p class="exp-date">
+                📍 San Diego, USA &nbsp;|&nbsp; May 2019 – Sept 2019
+              </p>
+              <ul class="exp-bullets">
+                <li>
+                  Designed and developed data models, reports and interfaces
+                  using Oracle PL/SQL
+                </li>
+                <li>
+                  Collaborated with clients and gathered requirements for ACBS
+                  suite development
+                </li>
+              </ul>
+              <div class="exp-tags">
+                <span>Oracle</span><span>PL/SQL</span><span>Data Modeling</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item" id="exp-fis-da">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="exp-header">
+                <div>
+                  <h3 class="exp-company">FIS</h3>
+                  <p class="exp-role">Derivatives Analyst</p>
+                </div>
+                <span class="exp-badge">2 years</span>
+              </div>
+              <p class="exp-date">
+                📍 Jersey City, USA &nbsp;|&nbsp; Apr 2017 – May 2019
+              </p>
+              <ul class="exp-bullets">
+                <li>
+                  Scripted alert monitoring on ITRS Geneos to maintain stability
+                  of servers
+                </li>
+                <li>
+                  Provided L2/L3 support for application breakdowns ensuring
+                  trading stability
+                </li>
+              </ul>
+              <div class="exp-tags">
+                <span>ITRS Geneos</span><span>Monitoring</span
+                ><span>L2/L3 Support</span><span>Finance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SKILLS ─── -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-label">03 — Skills</div>
+        <h2 class="section-title">
+          My <span class="gradient-text">Toolkit</span>
+        </h2>
+
+        <!-- Tech logo grid -->
+        <div class="tech-logo-grid" id="tech-logo-grid">
+          <!-- AWS -->
+          <div class="tech-logo-card" title="Amazon Web Services">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.063.056.127.056.183 0 .08-.048.16-.152.24l-.503.335a.383.383 0 0 1-.208.072c-.08 0-.16-.04-.239-.112a2.47 2.47 0 0 1-.287-.375 6.18 6.18 0 0 1-.248-.471c-.622.734-1.405 1.101-2.347 1.101-.67 0-1.205-.191-1.596-.574-.391-.384-.59-.894-.59-1.533 0-.678.239-1.23.726-1.644.487-.415 1.133-.623 1.955-.623.272 0 .551.024.846.064.296.04.6.104.918.176v-.583c0-.607-.127-1.03-.375-1.277-.255-.248-.686-.367-1.3-.367-.28 0-.568.031-.863.103-.295.072-.583.16-.862.272a2.287 2.287 0 0 1-.28.104.488.488 0 0 1-.127.023c-.112 0-.168-.08-.168-.247v-.391c0-.128.016-.224.056-.28a.597.597 0 0 1 .224-.167c.279-.144.614-.264 1.005-.36a4.84 4.84 0 0 1 1.246-.151c.95 0 1.644.216 2.091.647.439.43.662 1.085.662 1.963v2.586zm-3.24 1.214c.263 0 .534-.048.822-.144.287-.096.543-.271.758-.51.128-.152.224-.32.272-.512.047-.191.08-.423.08-.694v-.335a6.66 6.66 0 0 0-.735-.136 6.02 6.02 0 0 0-.75-.048c-.535 0-.926.104-1.19.32-.263.215-.39.518-.39.917 0 .375.095.655.295.846.191.2.47.296.838.296zm6.41.862c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.311L7.586 5.55a1.398 1.398 0 0 1-.072-.32c0-.128.064-.2.191-.2h.783c.151 0 .255.025.31.08.065.048.113.16.16.312l1.342 5.284 1.245-5.284c.04-.16.088-.264.151-.312a.549.549 0 0 1 .32-.08h.638c.152 0 .256.025.32.08.063.048.12.16.151.312l1.261 5.348 1.381-5.348c.048-.16.104-.264.16-.312a.52.52 0 0 1 .311-.08h.743c.127 0 .2.065.2.2 0 .04-.009.08-.017.128a1.137 1.137 0 0 1-.056.2l-1.923 6.17c-.048.16-.104.263-.168.311a.51.51 0 0 1-.303.08h-.687c-.151 0-.255-.024-.32-.08-.063-.056-.119-.16-.15-.32l-1.238-5.148-1.23 5.14c-.04.16-.087.264-.15.32-.065.056-.177.08-.32.08zm10.256.215c-.415 0-.83-.048-1.229-.143-.399-.096-.71-.2-.918-.32-.128-.071-.215-.151-.247-.223a.563.563 0 0 1-.048-.224v-.407c0-.167.064-.247.183-.247.048 0 .096.008.144.024.048.016.12.048.2.08.271.12.566.215.878.279.319.064.63.096.95.096.502 0 .894-.088 1.165-.264a.86.86 0 0 0 .415-.758.777.777 0 0 0-.215-.559c-.144-.151-.415-.287-.807-.415l-1.157-.36c-.583-.183-1.014-.454-1.277-.813a1.902 1.902 0 0 1-.4-1.158c0-.335.073-.63.216-.886.144-.255.335-.479.575-.654.24-.184.51-.32.83-.415.32-.096.655-.136 1.006-.136.175 0 .358.008.535.032.183.024.35.056.518.088.16.04.312.08.455.127.144.048.256.096.336.144a.69.69 0 0 1 .24.2.43.43 0 0 1 .071.263v.375c0 .168-.064.256-.184.256a.83.83 0 0 1-.303-.096 3.652 3.652 0 0 0-1.532-.311c-.455 0-.815.071-1.062.223-.248.152-.375.383-.375.71 0 .224.08.416.24.567.159.152.454.304.877.44l1.134.358c.574.184.99.44 1.237.767.247.327.367.702.367 1.117 0 .343-.072.655-.207.926-.144.272-.336.511-.583.703-.248.2-.543.343-.886.447-.36.111-.734.167-1.142.167z"
+                fill="#FF9900"
+              />
+              <path
+                d="M20.16 17.484c-2.468 1.826-6.048 2.79-9.128 2.79-4.315 0-8.2-1.595-11.137-4.248-.231-.208-.024-.494.255-.33 3.17 1.842 7.087 2.95 11.137 2.95 2.73 0 5.733-.566 8.494-1.738.416-.18.765.271.38.576z"
+                fill="#FF9900"
+              />
+              <path
+                d="M21.16 16.34c-.316-.406-2.087-.192-2.885-.096-.24.03-.278-.182-.063-.335 1.414-.993 3.731-.707 4.003-.374.272.335-.072 2.656-1.398 3.762-.203.17-.398.079-.307-.144.299-.745.967-2.407.65-2.813z"
+                fill="#FF9900"
+              />
+            </svg>
+            <span>AWS</span>
+          </div>
+
+          <!-- GCP -->
+          <div class="tech-logo-card" title="Google Cloud Platform">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12.19 2.038L8.48 5.768l1.78 1.776a3.348 3.348 0 0 1 4.148 4.148l1.655 1.656 1.78 1.78L21.672 11.2a8.963 8.963 0 0 0-9.482-9.162z"
+                fill="#EA4335"
+              />
+              <path
+                d="M5.768 8.48L2.038 12.19A8.963 8.963 0 0 0 11.2 21.672l3.655-3.655-1.78-1.78a3.348 3.348 0 0 1-4.148-4.148L5.768 8.48z"
+                fill="#34A853"
+              />
+              <path
+                d="M14.655 13.348a3.348 3.348 0 0 1-4.654-4.654l-4.233 4.234 4.233 4.234 4.654-4.655.234.234-.234-.393z"
+                fill="#FBBC05"
+              />
+              <path
+                d="M21.672 11.2l-3.655 3.655a3.348 3.348 0 0 1-3.362.493l-4.655 4.654 3.655 3.655a8.963 8.963 0 0 0 7.974-12.457z"
+                fill="#4285F4"
+              />
+            </svg>
+            <span>GCP</span>
+          </div>
+
+          <!-- Kubernetes -->
+          <div class="tech-logo-card" title="Kubernetes">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.9985 0C11.7438 0 11.489.063 11.261.188L2.33 5.25A2.356 2.356 0 0 0 1.125 7.3v10.4c0 .841.446 1.619 1.206 2.05l8.93 5.062a2.35 2.35 0 0 0 2.477 0l8.93-5.063a2.356 2.356 0 0 0 1.207-2.05V7.3a2.357 2.357 0 0 0-1.207-2.05L12.738.188A2.342 2.342 0 0 0 12 0h-.0015zm.0015.875c.17 0 .34.04.494.123l8.93 5.063c.468.264.752.762.752 1.3v10.4c0 .537-.284 1.034-.752 1.3l-8.93 5.062a1.469 1.469 0 0 1-1.487 0l-8.929-5.063A1.484 1.484 0 0 1 1.25 17.7V7.3c0-.537.284-1.035.752-1.3l8.93-5.062A1.47 1.47 0 0 1 12 .875zm-.562 3.05a.437.437 0 0 0-.43.374l-.311 2.26a4.594 4.594 0 0 0-1.855.842l-1.994-1.022a.437.437 0 0 0-.553.143L5.18 8.18a.437.437 0 0 0 .085.578l1.766 1.394a4.609 4.609 0 0 0-.107 1.848l-1.98 1.086a.437.437 0 0 0-.172.566l1.038 2.055a.437.437 0 0 0 .558.2l2.082-.796c.475.4 1.017.714 1.61.922l.31 2.26a.437.437 0 0 0 .432.372h2.394a.437.437 0 0 0 .432-.373l.311-2.26a4.602 4.602 0 0 0 1.61-.921l2.082.795a.437.437 0 0 0 .558-.2l1.038-2.054a.437.437 0 0 0-.172-.566l-1.98-1.086a4.61 4.61 0 0 0-.107-1.848l1.766-1.394a.437.437 0 0 0 .085-.578l-1.113-1.658a.437.437 0 0 0-.553-.143L14.157 7.4a4.594 4.594 0 0 0-1.854-.842l-.311-2.26a.437.437 0 0 0-.432-.373H11.44zm.562 4.325a2.75 2.75 0 1 1 0 5.5 2.75 2.75 0 0 1 0-5.5z"
+                fill="#326CE5"
+              />
+            </svg>
+            <span>Kubernetes</span>
+          </div>
+
+          <!-- Docker -->
+          <div class="tech-logo-card" title="Docker">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.983 11.078h2.119a.186.186 0 0 0 .186-.185V9.006a.186.186 0 0 0-.186-.186h-2.119a.185.185 0 0 0-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 0 0 .186-.186V3.574a.186.186 0 0 0-.186-.185h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 0 0 .186-.186V6.29a.186.186 0 0 0-.186-.185h-2.118a.185.185 0 0 0-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 0 0 .184-.186V6.29a.185.185 0 0 0-.185-.185H8.1a.185.185 0 0 0-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 0 0 .185-.186V6.29a.185.185 0 0 0-.185-.185H5.136a.186.186 0 0 0-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 0 0 .186-.185V9.006a.186.186 0 0 0-.186-.186h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 0 0 .184-.185V9.006a.185.185 0 0 0-.184-.186h-2.12a.185.185 0 0 0-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 0 0 .185-.185V9.006a.185.185 0 0 0-.184-.186h-2.12a.186.186 0 0 0-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 0 0 .184-.185V9.006a.185.185 0 0 0-.184-.186h-2.12a.185.185 0 0 0-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 0 0-.75.748 11.376 11.376 0 0 0 .692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 0 0 3.823-1.389c.98-.567 1.86-1.314 2.61-2.208 1.248-1.512 1.988-3.195 2.532-4.698h.22c1.363 0 2.2-.55 2.7-1.009.197-.176.355-.394.452-.64l.062-.192z"
+                fill="#2496ED"
+              />
+            </svg>
+            <span>Docker</span>
+          </div>
+
+          <!-- Terraform -->
+          <div class="tech-logo-card" title="Terraform">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.35 8.22L9.02 4.62v7.18l6.33 3.6V8.22zM8.14 4.62L1.81 8.22v7.18l6.33-3.6V4.62zM8.58 19.26l6.33-3.6v-7.18l-6.33 3.6v7.18zM22.19 0l-6.33 3.6v7.18l6.33-3.6V0z"
+                fill="#7B42BC"
+              />
+            </svg>
+            <span>Terraform</span>
+          </div>
+
+          <!-- GitHub Actions -->
+          <div class="tech-logo-card" title="GitHub Actions">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8a9.56 9.56 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"
+                fill="#fff"
+              />
+            </svg>
+            <span>GitHub Actions</span>
+          </div>
+
+          <!-- Datadog -->
+          <div class="tech-logo-card" title="Datadog">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21.3 14.27L20.14 13l-1.05.67-.97-.35.07-1.27-1.55-.55-.61 1.1-1.04.03-.66-1.07-1.54.6.11 1.26-.88.52-1.08-.64-1.25.98.66 1.08-.46.92-1.27-.03-.4 1.57 1.16.51.17 1.02-.93.86.75 1.46 1.25-.37.81.7-.27 1.25 1.5.63.86-.94 1.03.14.44 1.21 1.57-.23.01-1.27.93-.89 1.15.4 1.08-1.03-.72-1.06.39-.98 1.22-.2.27-1.58-1.18-.43zM12.29 0L.5 3.49v13.03l3.74 1.02V5.95l8.05-2.19 8.06 2.19v11.6l3.65-1.06V3.49z"
+                fill="#632CA6"
+              />
+            </svg>
+            <span>Datadog</span>
+          </div>
+
+          <!-- Prometheus -->
+          <div class="tech-logo-card" title="Prometheus">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12c0 6.628 5.373 12 12 12 6.628 0 12-5.372 12-12 0-6.627-5.372-12-12-12zm0 2.4a9.6 9.6 0 1 1 0 19.2A9.6 9.6 0 0 1 12 2.4zm-.96 2.64v10.08H9.12L12 19.2l2.88-4.08h-1.92V5.04H11.04zm-3.6 2.16a6.72 6.72 0 0 0-1.68 5.04h1.44a5.28 5.28 0 0 1 1.2-3.6l-1-.44zm8.16 0l-.96.44a5.28 5.28 0 0 1 1.2 3.6h1.44a6.72 6.72 0 0 0-1.68-5.04z"
+                fill="#E6522C"
+              />
+            </svg>
+            <span>Prometheus</span>
+          </div>
+
+          <!-- Grafana -->
+          <div class="tech-logo-card" title="Grafana">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.25H7.5v-1.5h9v1.5zm0-3H7.5v-1.5h9v1.5zm0-3H7.5V9.75h9v1.5zm0-3H7.5V6.75h9v1.5z"
+                fill="#F46800"
+              />
+            </svg>
+            <span>Grafana</span>
+          </div>
+
+          <!-- Jenkins -->
+          <div class="tech-logo-card" title="Jenkins">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.975.004C6.338.004.848 4.765.848 10.66c0 3.073 1.37 5.847 3.602 7.857-.094.407-.189.813-.189 1.25 0 2.136 1.735 3.87 3.87 3.87.627 0 1.22-.157 1.75-.44A11.132 11.132 0 0 0 12.025 24c4.655 0 8.745-2.855 10.558-6.967a3.868 3.868 0 0 0 .566-1.996c0-1.85-1.3-3.39-3.04-3.768-.03-.596-.094-1.19-.22-1.753.282-.44.44-.944.44-1.497 0-1.56-1.26-2.823-2.823-2.823-.188 0-.376.03-.564.064C16.18 2.98 14.194.004 11.975.004z"
+                fill="#D33833"
+              />
+            </svg>
+            <span>Jenkins</span>
+          </div>
+
+          <!-- Python -->
+          <div class="tech-logo-card" title="Python">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.914.002C5.82.002 6.2 2.657 6.2 2.657l.007 2.752h5.814v.826H3.912S0 5.789 0 11.941c0 6.15 3.403 5.931 3.403 5.931h2.031v-2.851s-.109-3.403 3.347-3.403h5.768s3.24.052 3.24-3.132V3.236S18.322.002 11.914.002zm-3.212 1.86a.989.989 0 1 1 0 1.978.989.989 0 0 1 0-1.977z"
+                fill="url(#py1)"
+              />
+              <path
+                d="M12.086 23.998c6.094 0 5.714-2.655 5.714-2.655l-.007-2.752h-5.814v-.826h8.11S24 18.211 24 12.059c0-6.15-3.404-5.931-3.404-5.931h-2.03v2.851s.108 3.403-3.348 3.403H9.45s-3.24-.052-3.24 3.132v5.25s-.494 3.234 5.877 3.234zm3.211-1.86a.989.989 0 1 1 0-1.978.989.989 0 0 1 0 1.977z"
+                fill="url(#py2)"
+              />
+              <defs>
+                <linearGradient id="py1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#387EB8" />
+                  <stop offset="100%" stop-color="#366994" />
+                </linearGradient>
+                <linearGradient id="py2" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#FFE052" />
+                  <stop offset="100%" stop-color="#FFC331" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <span>Python</span>
+          </div>
+
+          <!-- ELK / OpenSearch -->
+          <div class="tech-logo-card" title="OpenSearch / ELK">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2a7 7 0 1 1 0 14A7 7 0 0 1 12 2zm0 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm7 12.5a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0z"
+                fill="#00BFB3"
+              />
+            </svg>
+            <span>OpenSearch</span>
+          </div>
+
+          <!-- SOC 2 -->
+          <div class="tech-logo-card" title="SOC 2 Compliance">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 1.5L2 6.5v6C2 17.75 6.5 22.5 12 22.5c5.5 0 10-4.75 10-10v-6L12 1.5zM10.5 16.5l-3.5-3.5 1.41-1.41L10.5 13.67l5.09-5.08L17 10l-6.5 6.5z"
+                fill="#4FD1C5"
+              />
+            </svg>
+            <span>SOC 2</span>
+          </div>
+
+          <!-- Spinnaker -->
+          <div class="tech-logo-card" title="Spinnaker">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"
+                fill="#139BB4"
+              />
+            </svg>
+            <span>Spinnaker</span>
+          </div>
+
+          <!-- IAM / Security -->
+          <div class="tech-logo-card" title="IAM / Security">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"
+                fill="#9F7AEA"
+              />
+            </svg>
+            <span>IAM & RBAC</span>
+          </div>
+
+          <!-- GKE -->
+          <div class="tech-logo-card" title="Google Kubernetes Engine">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                stroke="#4285F4"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span>GKE</span>
+          </div>
+        </div>
+
+        <!-- Category summary cards -->
+        <div class="skills-grid" id="skills-grid">
+          <div class="skill-category" id="skill-cloud">
+            <div class="skill-icon-svg">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"
+                />
+              </svg>
+            </div>
+            <h3>Cloud &amp; Infrastructure</h3>
+            <div class="skill-pills">
+              <span>AWS</span><span>GCP</span><span>Kubernetes</span
+              ><span>Docker</span><span>Cloud Migrations</span
+              ><span>Scalable Infra</span>
+            </div>
+          </div>
+
+          <div class="skill-category" id="skill-devops">
+            <div class="skill-icon-svg">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"
+                />
+              </svg>
+            </div>
+            <h3>DevOps &amp; Automation</h3>
+            <div class="skill-pills">
+              <span>CI/CD</span><span>GitHub Actions</span><span>Jenkins</span
+              ><span>Terraform</span><span>OpenSearch</span
+              ><span>Spinnaker</span>
+            </div>
+          </div>
+
+          <div class="skill-category" id="skill-observability">
+            <div class="skill-icon-svg">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"
+                />
+              </svg>
+            </div>
+            <h3>Observability &amp; Monitoring</h3>
+            <div class="skill-pills">
+              <span>Datadog</span><span>Prometheus</span><span>Grafana</span
+              ><span>ELK Stack</span><span>Incident Mgmt</span><span>SLOs</span>
+            </div>
+          </div>
+
+          <div class="skill-category" id="skill-security">
+            <div class="skill-icon-svg">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"
+                />
+              </svg>
+            </div>
+            <h3>Security &amp; Compliance</h3>
+            <div class="skill-pills">
+              <span>SOC 2</span><span>IAM</span><span>RBAC</span
+              ><span>Network Security</span><span>Cost Optimization</span>
+            </div>
+          </div>
+
+          <div class="skill-category" id="skill-leadership">
+            <div class="skill-icon-svg">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
+                />
+              </svg>
+            </div>
+            <h3>Leadership &amp; Strategy</h3>
+            <div class="skill-pills">
+              <span>Team Building</span><span>Mentorship</span
+              ><span>OKR Planning</span><span>Cross-Team</span
+              ><span>Hiring</span>
+            </div>
+          </div>
+
+          <div class="skill-category" id="skill-ops">
+            <div class="skill-icon-svg">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96a7.37 7.37 0 0 0-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6S10.02 8.4 12 8.4s3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"
+                />
+              </svg>
+            </div>
+            <h3>Operations</h3>
+            <div class="skill-pills">
+              <span>ITIL</span><span>SRE</span><span>Python</span
+              ><span>Oracle PL/SQL</span><span>Docker Swarm</span
+              ><span>GKE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── EDUCATION + CERTS ─── -->
+    <section id="education" class="section section-dark">
+      <div class="container">
+        <div class="section-label">04 — Education &amp; Certifications</div>
+        <h2 class="section-title">
+          Foundation &amp; <span class="gradient-text">Credentials</span>
+        </h2>
+        <div class="edu-grid">
+          <div class="edu-card" id="edu-uah">
+            <div class="edu-icon">🎓</div>
+            <div class="edu-details">
+              <h3>Master's in Computer Science</h3>
+              <p class="edu-school">University of Alabama in Huntsville</p>
+              <p class="edu-meta">
+                Aug 2015 – Dec 2016 &nbsp;|&nbsp; Huntsville, Alabama
+              </p>
+              <div class="edu-gpa">GPA: <strong>3.9 / 4.0</strong></div>
+            </div>
+          </div>
+          <div class="edu-card" id="cert-mta">
+            <div class="edu-icon">📜</div>
+            <div class="edu-details">
+              <h3>Certified Microsoft Technology Associate</h3>
+              <p class="edu-school">Microsoft</p>
+            </div>
+          </div>
+          <div class="edu-card" id="cert-mcp">
+            <div class="edu-icon">📜</div>
+            <div class="edu-details">
+              <h3>Microsoft Certified Professional</h3>
+              <p class="edu-school">Microsoft</p>
+            </div>
+          </div>
+          <div class="edu-card" id="project-bonjour">
+            <div class="edu-icon">🔬</div>
+            <div class="edu-details">
+              <h3>Bonjour IoT Discovery</h3>
+              <p class="edu-school">Research Project</p>
+              <p class="edu-meta">
+                Designed a framework for service discovery in IoT-based apps
+                using the Bonjour API
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CONTACT ─── -->
+    <section id="contact" class="section">
+      <div class="container contact-wrap">
+        <div class="section-label">05 — Contact</div>
+        <h2 class="section-title">
+          Let's <span class="gradient-text">Connect</span>
+        </h2>
+        <p class="contact-sub">
+          I'm open to senior platform, DevOps, and SRE leadership roles. Whether
+          you have a question, an opportunity, or just want to geek out about
+          Kubernetes — my inbox is always open.
+        </p>
+        <div class="contact-cards">
+          <a
+            href="mailto:srivastavapalash0@gmail.com"
+            class="contact-card"
+            id="contact-email"
+          >
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="cc-label">Email</p>
+              <p class="cc-val">srivastavapalash0@gmail.com</p>
+            </div>
+          </a>
+          <a href="tel:+15712360145" class="contact-card" id="contact-phone">
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="cc-label">Phone</p>
+              <p class="cc-val">+1 (571) 236-0145</p>
+            </div>
+          </a>
+          <a
+            href="https://linkedin.com/in/srivastavapalash"
+            class="contact-card"
+            id="contact-linkedin"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="cc-label">LinkedIn</p>
+              <p class="cc-val">srivastavapalash</p>
+            </div>
+          </a>
+          <a
+            href="https://github.com/srivastava-palash"
+            class="contact-card"
+            id="contact-github"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="cc-label">GitHub</p>
+              <p class="cc-val">srivastava-palash</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer id="footer">
+      <div class="footer-inner">
+        <p>
+          Designed &amp; built by <strong>Palash Srivastava</strong> &copy; 2025
+        </p>
+        <p class="footer-note">Hosted on GitHub Pages</p>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>
