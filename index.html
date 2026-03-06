@@ -30,6 +30,13 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Custom cursor -->
+    <div id="custom-cursor"></div>
+    <div id="custom-cursor-dot"></div>
+
+    <!-- Mouse-tracking spotlight -->
+    <div id="mouse-spotlight" aria-hidden="true"></div>
+
     <!-- ═══ BOOT OVERLAY ═══ -->
     <div id="boot-overlay">
       <div class="boot-scanlines"></div>
@@ -143,7 +150,9 @@
             Available for new opportunities
           </div>
           <h1 class="hero-name">
-            Palash<br /><span class="gradient-text">Srivastava</span>
+            Palash<br /><span class="gradient-text" id="hero-role-text"
+              >Srivastava</span
+            >
           </h1>
           <p class="hero-title">
             Head of Platform &bull; DevOps Manager &bull; Site Reliability
@@ -308,7 +317,195 @@
                     <span>SOC 2</span>
                   </div>
                 </div>
+                <!-- SLO Uptime Widget -->
+                <div class="slo-widget">
+                  <div class="slo-header">
+                    <span class="slo-title">System Reliability</span>
+                    <span class="slo-badge">LIVE</span>
+                  </div>
+                  <div class="slo-meters">
+                    <div class="slo-row">
+                      <span class="slo-label">SLO Target</span>
+                      <div class="slo-bar">
+                        <div class="slo-fill" style="width: 99.98%"></div>
+                      </div>
+                      <span class="slo-pct">99.98%</span>
+                    </div>
+                    <div class="slo-row">
+                      <span class="slo-label">Deploy Freq</span>
+                      <div class="slo-bar">
+                        <div
+                          class="slo-fill slo-fill-teal"
+                          style="width: 90%"
+                        ></div>
+                      </div>
+                      <span class="slo-pct">Daily</span>
+                    </div>
+                    <div class="slo-row">
+                      <span class="slo-label">MTTR</span>
+                      <div class="slo-bar">
+                        <div
+                          class="slo-fill slo-fill-green"
+                          style="width: 95%"
+                        ></div>
+                      </div>
+                      <span class="slo-pct">&lt; 5 min</span>
+                    </div>
+                  </div>
+                  <div class="slo-uptime">
+                    <span class="slo-up-label">Uptime this year</span>
+                    <span class="slo-up-val" id="uptime-val"
+                      >calculating...</span
+                    >
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FEATURED PROJECTS ─── -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-label">01.5 — Projects</div>
+        <h2 class="section-title">
+          Infra I've <span class="gradient-text">Shipped</span>
+        </h2>
+        <div class="projects-grid">
+          <div class="project-card reveal-el" id="proj-cicd">
+            <div class="project-header">
+              <div class="project-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"
+                  />
+                </svg>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/srivastava-palash"
+                  target="_blank"
+                  rel="noopener"
+                  class="project-link-btn"
+                  aria-label="View on GitHub"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    width="16"
+                    height="16"
+                  >
+                    <path
+                      d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <h3 class="project-title">GitLab → GitHub CI/CD Migration</h3>
+            <p class="project-desc">
+              Redesigned end-to-end delivery pipelines at Constrafor, migrating
+              from GitLab to GitHub Actions with ephemeral PR environments,
+              artifact caching, and multi-environment promotion gates. Result:
+              70% faster deployments, zero downtime rollouts.
+            </p>
+            <div class="project-metrics">
+              <span class="pm-badge pm-green">▼ 70% deploy time</span>
+              <span class="pm-badge pm-blue">0s downtime</span>
+              <span class="pm-badge pm-purple">PR environments</span>
+            </div>
+            <div class="project-stack">
+              GitHub Actions &middot; Docker &middot; Kubernetes &middot;
+              Terraform &middot; AWS ECR
+            </div>
+          </div>
+
+          <div class="project-card reveal-el" id="proj-soc2">
+            <div class="project-header">
+              <div class="project-icon project-icon-teal">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"
+                  />
+                </svg>
+              </div>
+              <div class="project-links">
+                <span
+                  class="project-link-btn"
+                  style="cursor: default; opacity: 0.4"
+                  title="Internal project"
+                  >&#128274;</span
+                >
+              </div>
+            </div>
+            <h3 class="project-title">
+              SOC 2 Type II Infrastructure Hardening
+            </h3>
+            <p class="project-desc">
+              Led the full SOC 2 Type II readiness effort — from IAM policy
+              rewrites and VPC segmentation to automated compliance checks in
+              CI. Built security guardrails across AWS services and established
+              incident response runbooks that satisfied external auditors on
+              first attempt.
+            </p>
+            <div class="project-metrics">
+              <span class="pm-badge pm-green">SOC 2 Certified</span>
+              <span class="pm-badge pm-blue">IAM Hardened</span>
+              <span class="pm-badge pm-orange">Audit Pass</span>
+            </div>
+            <div class="project-stack">
+              AWS &middot; IAM &middot; VPC &middot; CloudTrail &middot;
+              Security Hub &middot; GitHub Actions
+            </div>
+          </div>
+
+          <div class="project-card reveal-el" id="proj-observability">
+            <div class="project-header">
+              <div class="project-icon project-icon-orange">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"
+                  />
+                </svg>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/srivastava-palash"
+                  target="_blank"
+                  rel="noopener"
+                  class="project-link-btn"
+                  aria-label="View on GitHub"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    width="16"
+                    height="16"
+                  >
+                    <path
+                      d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <h3 class="project-title">Full-Stack Observability Platform</h3>
+            <p class="project-desc">
+              Built centralized observability from scratch at TS Imagine —
+              Prometheus scraping, Grafana dashboards, custom alerting rules,
+              and Datadog APM integration. Shifted the team from reactive
+              firefighting to proactive SLO-based reliability engineering.
+            </p>
+            <div class="project-metrics">
+              <span class="pm-badge pm-green">99.9% uptime</span>
+              <span class="pm-badge pm-orange">MTTR &lt; 5min</span>
+              <span class="pm-badge pm-blue">SLO-driven</span>
+            </div>
+            <div class="project-stack">
+              Prometheus &middot; Grafana &middot; Datadog &middot; Python
+              &middot; ELK Stack
             </div>
           </div>
         </div>

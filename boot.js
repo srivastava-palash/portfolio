@@ -328,44 +328,69 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
           { cls: "dt-bright", text: "PALASH@PORTFOLIO — AVAILABLE COMMANDS" },
           {
             cls: "dt-dim",
-            text: "───────────────────────────────────────────────────────",
+            text: "─────────────────────────────────────────────────────────────",
+          },
+          { cls: "dt-ok", text: "  ls                     List files" },
+          {
+            cls: "dt-ok",
+            text: "  cat <file>             Print file (try: cat experience.log)",
+          },
+          { cls: "dt-ok", text: "  whoami                 About Palash" },
+          { cls: "dt-ok", text: "  pwd / env / uptime     System info" },
+          { cls: "dt-dim", text: "" },
+          { cls: "dt-key", text: "  ── Infrastructure ──" },
+          {
+            cls: "dt-ok",
+            text: "  kubectl get pods        K8s cluster status",
+          },
+          { cls: "dt-ok", text: "  kubectl get nodes       Node info" },
+          {
+            cls: "dt-ok",
+            text: "  docker ps               Running containers",
+          },
+          { cls: "dt-ok", text: "  terraform plan          Show infra plan" },
+          {
+            cls: "dt-ok",
+            text: "  terraform apply         Apply infra changes",
+          },
+          { cls: "dt-ok", text: "  ps aux                  Running processes" },
+          { cls: "dt-dim", text: "" },
+          { cls: "dt-key", text: "  ── Workflows ──" },
+          {
+            cls: "dt-ok",
+            text: "  deploy prod             Full CI/CD pipeline \uD83D\uDE80",
           },
           {
             cls: "dt-ok",
-            text: "  ls                    List files in current directory",
-          },
-          { cls: "dt-ok", text: "  cat <file>            Print file contents" },
-          { cls: "dt-ok", text: "  whoami                About Palash" },
-          { cls: "dt-ok", text: "  pwd                   Current directory" },
-          {
-            cls: "dt-ok",
-            text: "  git log               Work history (career git log)",
-          },
-          { cls: "dt-ok", text: "  kubectl get pods      K8s cluster status" },
-          { cls: "dt-ok", text: "  kubectl get nodes     Node info" },
-          { cls: "dt-ok", text: "  docker ps             Running containers" },
-          {
-            cls: "dt-ok",
-            text: "  deploy prod           Trigger a full CI/CD deploy 🚀",
+            text: "  incident                Simulate an incident",
           },
           {
             cls: "dt-ok",
-            text: "  top                   Skill utilization stats",
+            text: "  pager                   On-call alert simulation",
           },
-          { cls: "dt-ok", text: "  ssh contact           Contact information" },
-          { cls: "dt-ok", text: "  uptime                Career uptime" },
+          { cls: "dt-ok", text: "  git log                 Career git log" },
+          { cls: "dt-ok", text: "  ssh contact             Contact info" },
+          { cls: "dt-dim", text: "" },
+          { cls: "dt-key", text: "  ── Fun ──" },
           {
             cls: "dt-ok",
-            text: "  env                   Environment variables (fun)",
+            text: "  top                     Skill utilization stats",
           },
-          { cls: "dt-ok", text: "  clear                 Clear terminal" },
           {
             cls: "dt-ok",
-            text: "  exit                  Switch back to GUI mode",
+            text: "  neofetch                System/profile info",
+          },
+          { cls: "dt-ok", text: "  history                 Command history" },
+          { cls: "dt-ok", text: "  ping google.com         Network (fun)" },
+          { cls: "dt-ok", text: "  curl ifconfig.me        IP lookup" },
+          { cls: "dt-dim", text: "" },
+          {
+            cls: "dt-ok",
+            text: "  clear / exit            Clear or return to GUI",
           },
           {
             cls: "dt-dim",
-            text: "───────────────────────────────────────────────────────",
+            text: "─────────────────────────────────────────────────────────────",
           },
           { cls: "dt-blank", text: "" },
         ]),
@@ -643,6 +668,197 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
           { cls: "dt-blank", text: "" },
         ]),
 
+      neofetch: () =>
+        printLines([
+          { cls: "dt-bright", text: "         .-.      palash@portfolio" },
+          { cls: "dt-bright", text: "        (o_o)     -----------------" },
+          {
+            cls: "dt-info",
+            text: "        (   )     OS: Platform Engineering v9.2",
+          },
+          { cls: "dt-info", text: "       / \\|/ \\    Host: New York, USA" },
+          {
+            cls: "dt-info",
+            text: "              .   Shell: bash (Head of Platform)",
+          },
+          { cls: "dt-ok", text: "  Cloud:      AWS, GCP, Kubernetes" },
+          { cls: "dt-ok", text: "  Infra:      Terraform, Docker, Helm" },
+          { cls: "dt-ok", text: "  Observ:     Datadog, Prometheus, Grafana" },
+          {
+            cls: "dt-ok",
+            text: "  CI/CD:      GitHub Actions, Jenkins, Spinnaker",
+          },
+          { cls: "dt-ok", text: "  Security:   SOC 2 Type II, IAM, RBAC" },
+          {
+            cls: "dt-dim",
+            text: "  Uptime:     9y 2m  |  Incidents caused: 0",
+          },
+          { cls: "dt-live", text: "  Status:     open_to_opportunities=true" },
+          { cls: "dt-blank", text: "" },
+          {
+            cls: "dt-ok",
+            text: "  \u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0",
+          },
+          { cls: "dt-blank", text: "" },
+        ]),
+
+      "terraform plan": () =>
+        printLines([
+          { cls: "dt-dim", text: "  Initializing the backend..." },
+          {
+            cls: "dt-ok",
+            text: "  \u2713 Successfully configured the backend 'S3'",
+          },
+          { cls: "dt-dim", text: "  Refreshing state... done." },
+          { cls: "dt-blank", text: "" },
+          {
+            cls: "dt-bright",
+            text: "  Terraform will perform the following actions:",
+          },
+          { cls: "dt-blank", text: "" },
+          {
+            cls: "dt-ok",
+            text: "  # aws_eks_node_group.platform will be updated",
+          },
+          {
+            cls: "dt-info",
+            text: '  ~ resource "aws_eks_node_group" "platform" {',
+          },
+          { cls: "dt-info", text: "      ~ desired_size = 3 -> 6" },
+          { cls: "dt-info", text: "      ~ max_size     = 5 -> 10" },
+          { cls: "dt-info", text: "    }" },
+          { cls: "dt-blank", text: "" },
+          {
+            cls: "dt-ok",
+            text: "  # aws_cloudwatch_metric_alarm.slo will be created",
+          },
+          {
+            cls: "dt-info",
+            text: '  + resource "aws_cloudwatch_metric_alarm" "slo" {',
+          },
+          {
+            cls: "dt-info",
+            text: '      + alarm_name    = "palash-slo-99.98"',
+          },
+          { cls: "dt-info", text: '      + threshold     = "0.02"' },
+          { cls: "dt-info", text: "    }" },
+          { cls: "dt-blank", text: "" },
+          {
+            cls: "dt-live",
+            text: "  Plan: 1 to add, 1 to change, 0 to destroy.",
+          },
+          {
+            cls: "dt-dim",
+            text: "  Run 'terraform apply' to apply these changes.",
+          },
+          { cls: "dt-blank", text: "" },
+        ]),
+
+      "terraform apply": () =>
+        printLines([
+          { cls: "dt-info", text: "  Acquiring state lock... done." },
+          {
+            cls: "dt-ok",
+            text: "  aws_cloudwatch_metric_alarm.slo: Creating...",
+          },
+          {
+            cls: "dt-ok",
+            text: "  aws_cloudwatch_metric_alarm.slo: Creation complete after 3s",
+          },
+          { cls: "dt-ok", text: "  aws_eks_node_group.platform: Modifying..." },
+          {
+            cls: "dt-ok",
+            text: "  aws_eks_node_group.platform: Modifications complete after 87s",
+          },
+          { cls: "dt-blank", text: "" },
+          {
+            cls: "dt-live",
+            text: "  Apply complete! Resources: 1 added, 1 changed, 0 destroyed.",
+          },
+          { cls: "dt-blank", text: "" },
+        ]),
+
+      incident: () =>
+        printLines([
+          {
+            cls: "dt-err",
+            text: "  \ud83d\udea8  INCIDENT ALERT  \ud83d\udea8",
+          },
+          { cls: "dt-dim", text: "  ─────────────────────────────────────" },
+          { cls: "dt-err", text: "  SEV-2 | api-7d4f9b: elevated 5xx rate" },
+          { cls: "dt-dim", text: "  Triggered: 2m ago  |  Responder: palash" },
+          { cls: "dt-blank", text: "" },
+          { cls: "dt-info", text: "  > Checking pod logs..." },
+          {
+            cls: "dt-ok",
+            text: "  > Root cause: bad deploy (v2.3.9) — throttling DB",
+          },
+          { cls: "dt-info", text: "  > Rolling back to v2.3.8..." },
+          {
+            cls: "dt-ok",
+            text: "  > Rollback complete  |  5xx rate: 0.00%  |  MTTR: 4m12s",
+          },
+          { cls: "dt-blank", text: "" },
+          {
+            cls: "dt-live",
+            text: "  Incident RESOLVED. SLO impact: 0.001% budget burn.",
+          },
+          { cls: "dt-blank", text: "" },
+        ]),
+
+      pager: () =>
+        printLines([
+          { cls: "dt-err", text: "  \ud83d\udcdf  PAGER ALERT at 3:47 AM" },
+          {
+            cls: "dt-err",
+            text: "  High CPU on prod-worker-3  |  threshold: 90%  |  actual: 97%",
+          },
+          { cls: "dt-dim", text: "  ... responding ..." },
+          { cls: "dt-ok", text: "  > Scaled worker pool from 3 to 5 nodes" },
+          { cls: "dt-ok", text: "  > CPU normalized in 2m 33s" },
+          {
+            cls: "dt-dim",
+            text: "  > Back to sleep. SLO maintained. \ud83e\uddd0",
+          },
+          { cls: "dt-blank", text: "" },
+        ]),
+
+      history: () => {
+        const hist = cmdHistory.length
+          ? cmdHistory.slice().reverse()
+          : ["(no commands yet)"];
+        printLines(
+          hist.map((h, i) => ({
+            cls: "dt-dim",
+            text: `  ${String(i + 1).padStart(4, " ")}  ${h}`,
+          })),
+        );
+        printLines([{ cls: "dt-blank", text: "" }]);
+      },
+
+      "ps aux": () =>
+        printLines([
+          { cls: "dt-bright", text: "  USER       PID %CPU %MEM COMMAND" },
+          {
+            cls: "dt-ok",
+            text: "  palash       1  0.0  0.1 platform-engineer",
+          },
+          { cls: "dt-ok", text: "  palash      42  9.2  2.4 terraform-plan" },
+          { cls: "dt-info", text: "  palash     187  0.0  0.0 datadog-agent" },
+          { cls: "dt-info", text: "  palash     291  0.0  0.0 kubectl-watch" },
+          {
+            cls: "dt-dim",
+            text: "  palash     999  0.0  0.0 sleep (nights + weekends)",
+          },
+          { cls: "dt-blank", text: "" },
+        ]),
+
+      "curl ifconfig.me": () =>
+        printLines([
+          { cls: "dt-info", text: "  104.21.47.x  (New York, USA)" },
+          { cls: "dt-blank", text: "" },
+        ]),
+
       "deploy prod": deploy,
       deploy: deploy,
       "./deploy.sh": deploy,
@@ -775,6 +991,24 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
         return;
       }
       addLine("dt-err", `  error: unknown kubectl command: ${kubM[1]}`);
+      return;
+    }
+
+    // terraform subcommands
+    const tfM = lc.match(/^terraform\s+(.+)$/);
+    if (tfM) {
+      const sub = "terraform " + tfM[1];
+      const CMDS = makeCommands(addLine, printLines, dtBody, dtInput);
+      if (CMDS[sub]) {
+        CMDS[sub]();
+        return;
+      }
+      addLine(
+        "dt-err",
+        `  Error: No subcommand found for 'terraform ${tfM[1]}'`,
+      );
+      addLine("dt-dim", "  Try: terraform plan  |  terraform apply");
+      addLine("dt-blank", "");
       return;
     }
 
@@ -940,6 +1174,15 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
           "kubectl get nodes",
           "docker ps",
           "deploy prod",
+          "terraform plan",
+          "terraform apply",
+          "neofetch",
+          "incident",
+          "pager",
+          "ps aux",
+          "history",
+          "curl ifconfig.me",
+          "ping google.com",
           "clear",
           "exit",
         ];

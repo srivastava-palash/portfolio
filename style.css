@@ -51,6 +51,63 @@ body {
   line-height: 1.7;
   overflow-x: hidden;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   MOUSE SPOTLIGHT  (Antigravity-style background glow)
+   ══════════════════════════════════════════════════════════════ */
+#mouse-spotlight {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    900px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(99, 179, 237, 0.13) 0%,
+    rgba(159, 122, 234, 0.07) 35%,
+    transparent 70%
+  );
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+#mouse-spotlight.active {
+  opacity: 1;
+}
+
+/* Give sections position so spotlight shows through */
+section,
+nav,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Card tilt prep — needs transform-style and perspective from parent ── */
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition:
+    transform 0.08s ease,
+    box-shadow 0.3s ease;
+}
+/* The specular sheen layer inside cards */
+.tilt-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(
+    circle at var(--cx, 50%) var(--cy, 50%),
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.tilt-card:hover .tilt-sheen {
+  opacity: 1;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -1977,4 +2034,363 @@ img {
 }
 #dt-input:disabled {
   opacity: 0.4;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CUSTOM CURSOR
+   ══════════════════════════════════════════════════════════════ */
+#custom-cursor {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(99, 179, 237, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.2s,
+    height 0.2s,
+    border-color 0.2s,
+    background 0.2s;
+  mix-blend-mode: normal;
+  will-change: left, top;
+}
+#custom-cursor.cursor-hover {
+  width: 52px;
+  height: 52px;
+  border-color: rgba(99, 179, 237, 1);
+  background: rgba(99, 179, 237, 0.06);
+}
+#custom-cursor.cursor-click {
+  width: 20px;
+  height: 20px;
+  background: rgba(99, 179, 237, 0.3);
+}
+#custom-cursor-dot {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: var(--accent-1);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.1s,
+    height 0.1s;
+  will-change: left, top;
+}
+@media (hover: none) {
+  #custom-cursor,
+  #custom-cursor-dot {
+    display: none;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TYPEWRITER CARET
+   ══════════════════════════════════════════════════════════════ */
+.typewriter-caret {
+  display: inline-block;
+  width: 3px;
+  background: var(--accent-1);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: caretBlink 0.9s step-end infinite;
+  border-radius: 1px;
+}
+@keyframes caretBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SLO WIDGET (in about-card)
+   ══════════════════════════════════════════════════════════════ */
+.slo-widget {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(99, 179, 237, 0.12);
+  border-radius: var(--radius-md);
+  font-family: "JetBrains Mono", monospace;
+}
+.slo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.slo-title {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.slo-badge {
+  font-size: 0.58rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 99px;
+  background: rgba(79, 209, 197, 0.15);
+  color: var(--accent-3);
+  border: 1px solid rgba(79, 209, 197, 0.3);
+  animation: sloBadgePulse 2s ease-in-out infinite;
+}
+@keyframes sloBadgePulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+.slo-meters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.slo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.slo-label {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  width: 70px;
+  flex-shrink: 0;
+}
+.slo-bar {
+  flex: 1;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.slo-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  border-radius: 99px;
+  animation: sloFill 1.2s ease-out both;
+  transform-origin: left;
+}
+.slo-fill-teal {
+  background: linear-gradient(90deg, var(--accent-3), #38b2ac);
+}
+.slo-fill-green {
+  background: linear-gradient(90deg, #48bb78, #38a169);
+}
+@keyframes sloFill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.slo-pct {
+  font-size: 0.62rem;
+  color: var(--accent-1);
+  width: 50px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.slo-uptime {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.slo-up-label {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+.slo-up-val {
+  font-size: 0.72rem;
+  color: #48bb78;
+  font-weight: 600;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FEATURED PROJECTS SECTION
+   ══════════════════════════════════════════════════════════════ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.project-card:hover {
+  border-color: var(--border-accent);
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(99, 179, 237, 0.1);
+}
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.project-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: rgba(99, 179, 237, 0.1);
+  border: 1px solid rgba(99, 179, 237, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-1);
+  flex-shrink: 0;
+}
+.project-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.project-icon-teal {
+  background: rgba(79, 209, 197, 0.1);
+  border-color: rgba(79, 209, 197, 0.2);
+  color: var(--accent-3);
+}
+.project-icon-orange {
+  background: rgba(246, 173, 85, 0.1);
+  border-color: rgba(246, 173, 85, 0.2);
+  color: var(--accent-warm);
+}
+.project-links {
+  display: flex;
+  gap: 10px;
+}
+.project-link-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.project-link-btn:hover {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+  background: rgba(99, 179, 237, 0.08);
+}
+.project-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+.project-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  flex: 1;
+}
+.project-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pm-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-family: "JetBrains Mono", monospace;
+}
+.pm-green {
+  background: rgba(72, 187, 120, 0.12);
+  color: #48bb78;
+  border: 1px solid rgba(72, 187, 120, 0.25);
+}
+.pm-blue {
+  background: rgba(99, 179, 237, 0.12);
+  color: var(--accent-1);
+  border: 1px solid rgba(99, 179, 237, 0.25);
+}
+.pm-purple {
+  background: rgba(159, 122, 234, 0.12);
+  color: var(--accent-2);
+  border: 1px solid rgba(159, 122, 234, 0.25);
+}
+.pm-orange {
+  background: rgba(246, 173, 85, 0.12);
+  color: var(--accent-warm);
+  border: 1px solid rgba(246, 173, 85, 0.25);
+}
+.project-stack {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: "JetBrains Mono", monospace;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+/* reveal-el for project cards */
+.reveal-el {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.reveal-el.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Projects responsive */
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 600px) and (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }

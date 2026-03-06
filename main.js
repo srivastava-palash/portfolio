@@ -4,7 +4,7 @@
 
 // ─── REVEAL ON SCROLL via IntersectionObserver ───
 const revealEls = document.querySelectorAll(
-  ".timeline-item, .skill-category, .edu-card",
+  ".timeline-item, .skill-category, .edu-card, .reveal-el",
 );
 
 if ("IntersectionObserver" in window) {
@@ -346,6 +346,231 @@ document.addEventListener("keydown", (e) => {
 
   // Start after a short delay so page loads first
   setTimeout(runSequence, 1200);
+})();
+
+// ─── CUSTOM CURSOR ───
+(function initCursor() {
+  const ring = document.getElementById("custom-cursor");
+  const dot = document.getElementById("custom-cursor-dot");
+  if (!ring || !dot) return;
+
+  let mx = -200,
+    my = -200;
+  let rx = -200,
+    ry = -200;
+  let raf;
+
+  document.addEventListener("mousemove", (e) => {
+    mx = e.clientX;
+    my = e.clientY;
+    dot.style.left = mx + "px";
+    dot.style.top = my + "px";
+    if (!raf) raf = requestAnimationFrame(lerpRing);
+  });
+
+  function lerpRing() {
+    rx += (mx - rx) * 0.14;
+    ry += (my - ry) * 0.14;
+    ring.style.left = rx + "px";
+    ring.style.top = ry + "px";
+    const dist = Math.hypot(mx - rx, my - ry);
+    raf = dist > 0.5 ? requestAnimationFrame(lerpRing) : null;
+  }
+
+  const hoverTargets =
+    "a, button, .project-card, .timeline-card, .skill-category, .social-link, .b-key1, .b-key2, .b-esc, #dt-input, .boot-line";
+  document.addEventListener("mouseover", (e) => {
+    if (e.target.closest(hoverTargets)) ring.classList.add("cursor-hover");
+  });
+  document.addEventListener("mouseout", (e) => {
+    if (e.target.closest(hoverTargets)) ring.classList.remove("cursor-hover");
+  });
+  document.addEventListener("mousedown", () =>
+    ring.classList.add("cursor-click"),
+  );
+  document.addEventListener("mouseup", () =>
+    ring.classList.remove("cursor-click"),
+  );
+})();
+
+// ─── HERO TYPEWRITER ───
+(function initTypewriter() {
+  const el = document.getElementById("hero-role-text");
+  if (!el) return;
+  let height = el.offsetHeight || 80;
+  // Add caret
+  const caret = document.createElement("span");
+  caret.className = "typewriter-caret";
+  caret.style.height = "0.75em";
+  el.parentNode.insertBefore(caret, el.nextSibling);
+
+  const ROLES = [
+    "Srivastava",
+    "Platform Engineer",
+    "DevOps Manager",
+    "Site Reliability",
+  ];
+  let roleIdx = 0;
+  let charIdx = 0;
+  let deleting = false;
+  let paused = false;
+
+  function tick() {
+    const target = ROLES[roleIdx];
+    if (paused) {
+      paused = false;
+      setTimeout(tick, deleting ? 80 : 1800);
+      return;
+    }
+    if (!deleting) {
+      charIdx++;
+      el.textContent = target.slice(0, charIdx);
+      if (charIdx === target.length) {
+        paused = true;
+        deleting = true;
+      }
+    } else {
+      charIdx--;
+      el.textContent = target.slice(0, charIdx);
+      if (charIdx === 0) {
+        deleting = false;
+        roleIdx = (roleIdx + 1) % ROLES.length;
+        paused = true;
+      }
+    }
+    setTimeout(tick, deleting ? 42 : 88);
+  }
+  // Start after hero animation delay
+  setTimeout(tick, 2200);
+})();
+
+// ─── LIVE SLO UPTIME CALCULATOR ───
+(function calcUptime() {
+  const el = document.getElementById("uptime-val");
+  if (!el) return;
+  // Calculate what 99.98% uptime looks like as hours:minutes:seconds of downtime this year
+  const now = new Date();
+  const yearStart = new Date(now.getFullYear(), 0, 1);
+  const elapsed = (now - yearStart) / 1000; // seconds elapsed this year
+  const downtimeSec = elapsed * (1 - 0.9998);
+  const uptimeSec = elapsed - downtimeSec;
+  const days = Math.floor(uptimeSec / 86400);
+  const hours = Math.floor((uptimeSec % 86400) / 3600);
+  el.textContent = `${days}d ${hours}h (99.98% SLO)`;
+})();
+
+// ─── NAV: add Projects link ───
+// (projects section exists, make sure 'Projects' appears in nav if nav links exist)
+
+// ══════════════════════════════════════════════════════════════
+//  MOUSE SPOTLIGHT  — Antigravity.google style
+// ══════════════════════════════════════════════════════════════
+(function initSpotlight() {
+  const spotlight = document.getElementById("mouse-spotlight");
+  if (!spotlight) return;
+
+  let tx = window.innerWidth / 2;
+  let ty = window.innerHeight / 2;
+  let cx = tx,
+    cy = ty;
+  let rafId;
+
+  // Activate once the user moves the mouse
+  document.addEventListener(
+    "mousemove",
+    (e) => {
+      tx = e.clientX;
+      ty = e.clientY;
+      spotlight.classList.add("active");
+      if (!rafId) rafId = requestAnimationFrame(animate);
+    },
+    { passive: true },
+  );
+
+  // Smooth lerp so the glow has a subtle lag — feels weightier
+  function animate() {
+    cx += (tx - cx) * 0.1;
+    cy += (ty - cy) * 0.1;
+
+    // Use CSS custom properties — no repainting the full element, just re-evaluating gradient
+    spotlight.style.setProperty("--mx", cx.toFixed(1) + "px");
+    spotlight.style.setProperty("--my", cy.toFixed(1) + "px");
+
+    const dist = Math.hypot(tx - cx, ty - cy);
+    rafId = dist > 0.3 ? requestAnimationFrame(animate) : null;
+  }
+})();
+
+// ══════════════════════════════════════════════════════════════
+//  3D CARD TILT + SPECULAR SHEEN
+// ══════════════════════════════════════════════════════════════
+(function initCardTilt() {
+  // Which cards get the tilt treatment
+  const CARD_SELECTORS =
+    ".project-card, .timeline-card, .skill-category, .edu-card, .about-card";
+  const MAX_TILT = 10; // degrees
+  const PERSPECTIVE = 800; // px
+
+  // Inject tilt-card class + sheen div into all matching cards
+  document.querySelectorAll(CARD_SELECTORS).forEach((card) => {
+    card.classList.add("tilt-card");
+    // Ensure position:relative for sheen overlay
+    if (getComputedStyle(card).position === "static") {
+      card.style.position = "relative";
+    }
+    const sheen = document.createElement("div");
+    sheen.className = "tilt-sheen";
+    card.appendChild(sheen);
+
+    // Wrap in perspective container if not already
+    const parent = card.parentElement;
+    if (!parent.style.perspective) {
+      parent.style.perspective = PERSPECTIVE + "px";
+    }
+
+    let animFrame;
+    let targetRx = 0,
+      targetRy = 0;
+    let currentRx = 0,
+      currentRy = 0;
+    let targetCx = 50,
+      targetCy = 50;
+
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width; // 0..1
+      const relY = (e.clientY - rect.top) / rect.height; // 0..1
+
+      targetRy = (relX - 0.5) * 2 * MAX_TILT; // left/right tilt
+      targetRx = -(relY - 0.5) * 2 * MAX_TILT; // up/down tilt
+      targetCx = (relX * 100).toFixed(1);
+      targetCy = (relY * 100).toFixed(1);
+
+      // Update sheen position immediately (fast)
+      sheen.style.setProperty("--cx", targetCx + "%");
+      sheen.style.setProperty("--cy", targetCy + "%");
+
+      if (!animFrame) animFrame = requestAnimationFrame(lerpTilt);
+    });
+
+    card.addEventListener("mouseleave", () => {
+      targetRx = 0;
+      targetRy = 0;
+      if (!animFrame) animFrame = requestAnimationFrame(lerpTilt);
+    });
+
+    function lerpTilt() {
+      currentRx += (targetRx - currentRx) * 0.18;
+      currentRy += (targetRy - currentRy) * 0.18;
+
+      card.style.transform = `rotateX(${currentRx.toFixed(2)}deg) rotateY(${currentRy.toFixed(2)}deg)`;
+
+      const distR =
+        Math.abs(targetRx - currentRx) + Math.abs(targetRy - currentRy);
+      animFrame = distR > 0.05 ? requestAnimationFrame(lerpTilt) : null;
+      if (!animFrame) card.style.transform = "rotateX(0deg) rotateY(0deg)";
+    }
+  });
 })();
 
 console.log(
