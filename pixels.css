@@ -1,0 +1,594 @@
+/* ═══════════════════════════════════════════════════════════════
+   PIXEL ART SYSTEM — Pure CSS, zero dependencies
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── SHARED PIXEL ART RESET ─── */
+.px-art {
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════
+   A. HERO FLOATING PIXEL ICONS
+   ═══════════════════════════════════════════════ */
+.px-float-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+.px-float {
+  position: absolute;
+  opacity: 0.35;
+  animation: px-drift 18s ease-in-out infinite alternate;
+}
+
+/* ── Pixel Server ── */
+.px-server {
+  width: 5px;
+  height: 5px;
+  top: 18%;
+  right: 8%;
+  animation-delay: 0s;
+  box-shadow:
+    /* rack outline */
+    0px 0px 0 2px #4a9eff,
+    5px 0px 0 2px #4a9eff,
+    10px 0px 0 2px #4a9eff,
+    15px 0px 0 2px #4a9eff,
+    20px 0px 0 2px #4a9eff,
+    0px 5px 0 2px #3a7bd5,
+    5px 5px 0 2px #2d3748,
+    10px 5px 0 2px #2d3748,
+    15px 5px 0 2px #48bb78,
+    20px 5px 0 2px #3a7bd5,
+    0px 10px 0 2px #3a7bd5,
+    5px 10px 0 2px #2d3748,
+    10px 10px 0 2px #2d3748,
+    15px 10px 0 2px #f6ad55,
+    20px 10px 0 2px #3a7bd5,
+    0px 15px 0 2px #3a7bd5,
+    5px 15px 0 2px #2d3748,
+    10px 15px 0 2px #2d3748,
+    15px 15px 0 2px #48bb78,
+    20px 15px 0 2px #3a7bd5,
+    0px 20px 0 2px #4a9eff,
+    5px 20px 0 2px #4a9eff,
+    10px 20px 0 2px #4a9eff,
+    15px 20px 0 2px #4a9eff,
+    20px 20px 0 2px #4a9eff;
+}
+
+/* ── Pixel Terminal ── */
+.px-terminal {
+  width: 5px;
+  height: 5px;
+  top: 62%;
+  right: 14%;
+  animation-delay: -4s;
+  box-shadow:
+    /* frame top */
+    0px 0px 0 2px #63b3ed,
+    5px 0px 0 2px #63b3ed,
+    10px 0px 0 2px #63b3ed,
+    15px 0px 0 2px #63b3ed,
+    20px 0px 0 2px #63b3ed,
+    25px 0px 0 2px #63b3ed,
+    /* screen */ 0px 5px 0 2px #63b3ed,
+    5px 5px 0 2px #1a202c,
+    10px 5px 0 2px #48bb78,
+    15px 5px 0 2px #1a202c,
+    20px 5px 0 2px #1a202c,
+    25px 5px 0 2px #63b3ed,
+    0px 10px 0 2px #63b3ed,
+    5px 10px 0 2px #1a202c,
+    10px 10px 0 2px #1a202c,
+    15px 10px 0 2px #9f7aea,
+    20px 10px 0 2px #1a202c,
+    25px 10px 0 2px #63b3ed,
+    0px 15px 0 2px #63b3ed,
+    5px 15px 0 2px #48bb78,
+    10px 15px 0 2px #1a202c,
+    15px 15px 0 2px #1a202c,
+    20px 15px 0 2px #1a202c,
+    25px 15px 0 2px #63b3ed,
+    /* frame bottom */ 0px 20px 0 2px #63b3ed,
+    5px 20px 0 2px #63b3ed,
+    10px 20px 0 2px #63b3ed,
+    15px 20px 0 2px #63b3ed,
+    20px 20px 0 2px #63b3ed,
+    25px 20px 0 2px #63b3ed;
+}
+
+/* ── Pixel Docker Whale ── */
+.px-docker {
+  width: 5px;
+  height: 5px;
+  top: 35%;
+  left: 6%;
+  animation-delay: -8s;
+  box-shadow:
+    /* body */
+    10px 0px 0 2px #4a9eff,
+    15px 0px 0 2px #4a9eff,
+    20px 0px 0 2px #4a9eff,
+    25px 0px 0 2px #4a9eff,
+    5px 5px 0 2px #4a9eff,
+    10px 5px 0 2px #63b3ed,
+    15px 5px 0 2px #63b3ed,
+    20px 5px 0 2px #63b3ed,
+    25px 5px 0 2px #4a9eff,
+    30px 5px 0 2px #4a9eff,
+    0px 10px 0 2px #4a9eff,
+    5px 10px 0 2px #63b3ed,
+    10px 10px 0 2px #63b3ed,
+    15px 10px 0 2px #63b3ed,
+    20px 10px 0 2px #63b3ed,
+    25px 10px 0 2px #63b3ed,
+    30px 10px 0 2px #4a9eff,
+    /* containers on top */ 10px -5px 0 2px #9f7aea,
+    15px -5px 0 2px #48bb78,
+    20px -5px 0 2px #f6ad55,
+    25px -5px 0 2px #63b3ed;
+}
+
+/* ── Pixel Kubernetes Wheel ── */
+.px-k8s {
+  width: 5px;
+  height: 5px;
+  bottom: 20%;
+  left: 10%;
+  animation-delay: -12s;
+  box-shadow:
+    /* center */
+    10px 10px 0 2px #326ce5,
+    /* spokes */ 10px 0px 0 2px #326ce5,
+    10px 5px 0 2px #326ce5,
+    10px 15px 0 2px #326ce5,
+    10px 20px 0 2px #326ce5,
+    0px 10px 0 2px #326ce5,
+    5px 10px 0 2px #326ce5,
+    15px 10px 0 2px #326ce5,
+    20px 10px 0 2px #326ce5,
+    /* diagonal spokes */ 5px 5px 0 2px #326ce5,
+    15px 5px 0 2px #326ce5,
+    5px 15px 0 2px #326ce5,
+    15px 15px 0 2px #326ce5,
+    /* nodes */ 0px 0px 0 2px #63b3ed,
+    20px 0px 0 2px #63b3ed,
+    0px 20px 0 2px #63b3ed,
+    20px 20px 0 2px #63b3ed;
+}
+
+/* Drift animation */
+@keyframes px-drift {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(4px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-12px) rotate(1.5deg);
+  }
+  100% {
+    transform: translateY(-6px) rotate(-2deg);
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   B. ANIMATED PIXEL SERVER ROOM (between About and Projects)
+   ═══════════════════════════════════════════════ */
+.px-scene {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  height: 80px;
+  margin: -24px auto 32px;
+  overflow: hidden;
+  opacity: 0.5;
+}
+
+/* Blinking LED lights on servers */
+.px-led {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: px-blink 2s ease-in-out infinite;
+}
+.px-led--green {
+  background: #48bb78;
+  box-shadow: 0 0 6px #48bb78;
+}
+.px-led--amber {
+  background: #f6ad55;
+  box-shadow: 0 0 6px #f6ad55;
+  animation-delay: -0.7s;
+}
+.px-led--blue {
+  background: #63b3ed;
+  box-shadow: 0 0 6px #63b3ed;
+  animation-delay: -1.3s;
+}
+.px-led--red {
+  background: #fc8181;
+  box-shadow: 0 0 6px #fc8181;
+  animation-delay: -0.4s;
+}
+
+/* Rack unit (mini server) */
+.px-rack {
+  position: absolute;
+  height: 14px;
+  background: linear-gradient(180deg, #2d3748 0%, #1a202c 100%);
+  border: 1px solid #4a5568;
+  border-radius: 2px;
+}
+
+/* Data packet traveling across */
+.px-packet {
+  position: absolute;
+  width: 6px;
+  height: 3px;
+  background: #63b3ed;
+  border-radius: 1px;
+  animation: px-packet-move 4s linear infinite;
+  box-shadow: 0 0 8px #63b3ed;
+}
+.px-packet:nth-child(2) {
+  animation-delay: -1.3s;
+  background: #9f7aea;
+  box-shadow: 0 0 8px #9f7aea;
+}
+.px-packet:nth-child(3) {
+  animation-delay: -2.6s;
+  background: #48bb78;
+  box-shadow: 0 0 8px #48bb78;
+}
+
+@keyframes px-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+@keyframes px-packet-move {
+  0% {
+    left: -10px;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   C. PIXEL ART SECTION DIVIDERS
+   ═══════════════════════════════════════════════ */
+.px-divider {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  overflow: hidden;
+  opacity: 0.2;
+  margin: 0;
+  pointer-events: none;
+}
+
+/* Repeating circuit-board pattern */
+.px-divider--circuit {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 18px,
+    #63b3ed 18px,
+    #63b3ed 20px,
+    transparent 20px,
+    transparent 38px
+  );
+  background-size: 40px 2px;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+.px-divider--circuit::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #63b3ed 20%,
+    #63b3ed 80%,
+    transparent
+  );
+}
+/* Nodes along the circuit line */
+.px-divider--circuit::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 2px);
+  left: 0;
+  right: 0;
+  height: 5px;
+  background:
+    radial-gradient(circle, #63b3ed 1.5px, transparent 1.5px) 0 center / 80px
+      5px repeat-x,
+    radial-gradient(circle, #9f7aea 1.5px, transparent 1.5px) 40px center / 80px
+      5px repeat-x;
+}
+
+/* Pixel cloud pattern */
+.px-divider--clouds {
+  background:
+    /* Cloud 1 */
+    radial-gradient(circle at 10% 60%, #4a5568 3px, transparent 3px),
+    radial-gradient(circle at 12% 45%, #4a5568 4px, transparent 4px),
+    radial-gradient(circle at 16% 55%, #4a5568 3px, transparent 3px),
+    /* Cloud 2 */
+    radial-gradient(circle at 40% 50%, #4a5568 4px, transparent 4px),
+    radial-gradient(circle at 43% 38%, #4a5568 5px, transparent 5px),
+    radial-gradient(circle at 47% 48%, #4a5568 4px, transparent 4px),
+    /* Cloud 3 */
+    radial-gradient(circle at 75% 55%, #4a5568 3px, transparent 3px),
+    radial-gradient(circle at 78% 42%, #4a5568 5px, transparent 5px),
+    radial-gradient(circle at 82% 52%, #4a5568 4px, transparent 4px);
+}
+
+/* Stepped pixel mountain range */
+.px-divider--mountains {
+  height: 32px;
+}
+.px-divider--mountains::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background:
+    /* Mountain 1 */
+    linear-gradient(
+        135deg,
+        transparent 40%,
+        #2d3748 40%,
+        #2d3748 42%,
+        transparent 42%
+      )
+      5% bottom / 120px 28px no-repeat,
+    linear-gradient(
+        45deg,
+        transparent 40%,
+        #2d3748 40%,
+        #2d3748 42%,
+        transparent 42%
+      )
+      13% bottom / 120px 28px no-repeat,
+    /* Mountain 2 */
+    linear-gradient(
+        135deg,
+        transparent 35%,
+        #374151 35%,
+        #374151 38%,
+        transparent 38%
+      )
+      30% bottom / 160px 24px no-repeat,
+    linear-gradient(
+        45deg,
+        transparent 35%,
+        #374151 35%,
+        #374151 38%,
+        transparent 38%
+      )
+      42% bottom / 160px 24px no-repeat,
+    /* Mountain 3 */
+    linear-gradient(
+        135deg,
+        transparent 38%,
+        #2d3748 38%,
+        #2d3748 40%,
+        transparent 40%
+      )
+      60% bottom / 140px 32px no-repeat,
+    linear-gradient(
+        45deg,
+        transparent 38%,
+        #2d3748 38%,
+        #2d3748 40%,
+        transparent 40%
+      )
+      70% bottom / 140px 32px no-repeat,
+    /* Mountain 4 */
+    linear-gradient(
+        135deg,
+        transparent 42%,
+        #374151 42%,
+        #374151 44%,
+        transparent 44%
+      )
+      85% bottom / 100px 20px no-repeat,
+    linear-gradient(
+        45deg,
+        transparent 42%,
+        #374151 42%,
+        #374151 44%,
+        transparent 44%
+      )
+      92% bottom / 100px 20px no-repeat;
+}
+
+/* Data stream / binary rain mini */
+.px-divider--data {
+  height: 16px;
+  overflow: hidden;
+}
+.px-divider--data::before {
+  content: "01101 DEPLOY ◆ 10110 K8S ◆ 01011 DOCKER ◆ 11010 TERRAFORM ◆ 01101 SRE ◆ 10010 CI/CD ◆ 01101 DEPLOY ◆ 10110 K8S ◆ 01011 DOCKER ◆ 11010 TERRAFORM ◆";
+  position: absolute;
+  white-space: nowrap;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #63b3ed;
+  animation: px-scroll-text 30s linear infinite;
+}
+
+@keyframes px-scroll-text {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   D. INTERACTIVE PIXEL BUDDY (Corner mascot)
+   ═══════════════════════════════════════════════ */
+.px-buddy-wrap {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9998;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.px-buddy-wrap:hover {
+  transform: scale(1.15);
+}
+.px-buddy-wrap:hover .px-buddy-speech {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* The pixel character — 8-bit robot */
+.px-buddy {
+  width: 5px;
+  height: 5px;
+  position: relative;
+  /* 7x9 pixel robot */
+  box-shadow:
+    /* head */
+    5px 0px 0 2px #63b3ed,
+    10px 0px 0 2px #63b3ed,
+    15px 0px 0 2px #63b3ed,
+    20px 0px 0 2px #63b3ed,
+    25px 0px 0 2px #63b3ed,
+    5px 5px 0 2px #63b3ed,
+    10px 5px 0 2px #1a202c,
+    15px 5px 0 2px #63b3ed,
+    20px 5px 0 2px #1a202c,
+    25px 5px 0 2px #63b3ed,
+    5px 10px 0 2px #63b3ed,
+    10px 10px 0 2px #63b3ed,
+    15px 10px 0 2px #48bb78,
+    20px 10px 0 2px #63b3ed,
+    25px 10px 0 2px #63b3ed,
+    /* body */ 0px 15px 0 2px #9f7aea,
+    5px 15px 0 2px #9f7aea,
+    10px 15px 0 2px #9f7aea,
+    15px 15px 0 2px #9f7aea,
+    20px 15px 0 2px #9f7aea,
+    25px 15px 0 2px #9f7aea,
+    30px 15px 0 2px #9f7aea,
+    0px 20px 0 2px #9f7aea,
+    5px 20px 0 2px #2d3748,
+    10px 20px 0 2px #9f7aea,
+    15px 20px 0 2px #f6ad55,
+    20px 20px 0 2px #9f7aea,
+    25px 20px 0 2px #2d3748,
+    30px 20px 0 2px #9f7aea,
+    0px 25px 0 2px #9f7aea,
+    5px 25px 0 2px #9f7aea,
+    10px 25px 0 2px #9f7aea,
+    15px 25px 0 2px #9f7aea,
+    20px 25px 0 2px #9f7aea,
+    25px 25px 0 2px #9f7aea,
+    30px 25px 0 2px #9f7aea,
+    /* legs */ 5px 30px 0 2px #4a5568,
+    10px 30px 0 2px #4a5568,
+    20px 30px 0 2px #4a5568,
+    25px 30px 0 2px #4a5568,
+    5px 35px 0 2px #4a5568,
+    10px 35px 0 2px #4a5568,
+    20px 35px 0 2px #4a5568,
+    25px 35px 0 2px #4a5568;
+  animation: px-buddy-bob 3s ease-in-out infinite;
+}
+
+/* Bobbing idle animation */
+@keyframes px-buddy-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Speech bubble */
+.px-buddy-speech {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 0;
+  background: var(--bg-card, #1e293b);
+  border: 1px solid var(--border, #334155);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: #63b3ed;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+.px-buddy-speech::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 16px;
+  border: 5px solid transparent;
+  border-top-color: var(--border, #334155);
+}
+
+/* ── Responsive: hide on small screens ── */
+@media (max-width: 768px) {
+  .px-float-wrap {
+    display: none;
+  }
+  .px-buddy-wrap {
+    bottom: 12px;
+    left: 12px;
+  }
+  .px-scene {
+    height: 50px;
+  }
+}
+@media (hover: none) {
+  .px-buddy-wrap {
+    display: none;
+  }
+}

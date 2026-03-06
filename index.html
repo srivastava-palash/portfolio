@@ -28,6 +28,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="pixels.css" />
   </head>
   <body>
     <!-- Custom cursor -->
@@ -140,6 +141,13 @@
             <div class="face right"></div>
           </div>
         </div>
+        <!-- Floating pixel art icons -->
+        <div class="px-float-wrap" aria-hidden="true">
+          <div class="px-float px-server"></div>
+          <div class="px-float px-terminal"></div>
+          <div class="px-float px-docker"></div>
+          <div class="px-float px-k8s"></div>
+        </div>
       </div>
 
       <div class="hero-layout">
@@ -228,6 +236,9 @@
         <div class="scroll-line"></div>
       </div>
     </section>
+
+    <!-- Pixel divider: circuit -->
+    <div class="px-divider px-divider--circuit" aria-hidden="true"></div>
 
     <!-- ─── ABOUT ─── -->
     <section id="about" class="section">
@@ -365,6 +376,12 @@
         </div>
       </div>
     </section>
+
+    <!-- Pixel server room scene -->
+    <div id="px-server-room" class="px-scene" aria-hidden="true"></div>
+
+    <!-- Pixel divider: data stream -->
+    <div class="px-divider px-divider--data" aria-hidden="true"></div>
 
     <!-- ─── FEATURED PROJECTS ─── -->
     <section id="projects" class="section">
@@ -585,6 +602,9 @@
         </div>
       </div>
     </div>
+
+    <!-- Pixel divider: clouds -->
+    <div class="px-divider px-divider--clouds" aria-hidden="true"></div>
 
     <!-- ─── EXPERIENCE ─── -->
     <section id="experience" class="section section-dark">
@@ -810,6 +830,9 @@
         </div>
       </div>
     </section>
+
+    <!-- Pixel divider: mountains -->
+    <div class="px-divider px-divider--mountains" aria-hidden="true"></div>
 
     <!-- ─── SKILLS ─── -->
     <section id="skills" class="section">
@@ -1470,7 +1493,14 @@
       </div>
     </footer>
 
+    <!-- Pixel buddy mascot -->
+    <div class="px-buddy-wrap" id="px-buddy" aria-label="Pixel robot buddy">
+      <div class="px-buddy"></div>
+      <div class="px-buddy-speech">$ kubectl get pods ✓</div>
+    </div>
+
     <script src="boot.js"></script>
     <script src="main.js"></script>
+    <script src="pixels.js"></script>
   </body>
 </html>
