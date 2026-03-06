@@ -348,101 +348,203 @@ document.addEventListener("keydown", (e) => {
   setTimeout(runSequence, 1200);
 })();
 
-// ─── CUSTOM CURSOR ───
-(function initCursor() {
+// ══════════════════════════════════════════════════════════════
+//  UNIFIED MOUSE SYSTEM  — single rAF loop, GPU-only transforms
+// ══════════════════════════════════════════════════════════════
+(function initMouseSystem() {
+  /* ── Shared raw mouse position (updated on every mousemove) ── */
+  let RX = -400,
+    RY = -400; // raw/target
+  let needsFrame = false;
+
+  /* ── Cursor ── */
   const ring = document.getElementById("custom-cursor");
   const dot = document.getElementById("custom-cursor-dot");
-  if (!ring || !dot) return;
+  let CX = -400,
+    CY = -400; // lerped cursor ring position
 
-  let mx = -200,
-    my = -200;
-  let rx = -200,
-    ry = -200;
-  let raf;
+  /* ── Spotlight ── */
+  const spotlight = document.getElementById("mouse-spotlight");
+  let SX = window.innerWidth / 2,
+    SY = window.innerHeight / 2; // lerped spotlight
 
-  document.addEventListener("mousemove", (e) => {
-    mx = e.clientX;
-    my = e.clientY;
-    dot.style.left = mx + "px";
-    dot.style.top = my + "px";
-    if (!raf) raf = requestAnimationFrame(lerpRing);
+  /* ── Card tilt state ── */
+  // Only tilt project/experience/about cards — NOT skill-category (too many)
+  const TILT_SELECTORS =
+    ".project-card, .timeline-card, .edu-card, .about-card";
+  const MAX_TILT = 8; // degrees
+  let hoveredCard = null; // currently hovered card element
+  let cardRect = null; // cached getBoundingClientRect for hovered card
+  let TILTX = 0,
+    TILTY = 0; // lerped tilt values
+
+  // Inject sheen divs and tilt-card class into all tiltable cards
+  document.querySelectorAll(TILT_SELECTORS).forEach((card) => {
+    card.classList.add("tilt-card");
+    if (getComputedStyle(card).position === "static") {
+      card.style.position = "relative";
+    }
+    const sheen = document.createElement("div");
+    sheen.className = "tilt-sheen";
+    card.appendChild(sheen);
+    // Give parent perspective so 3D works
+    const p = card.parentElement;
+    if (!p.style.perspective) p.style.perspective = "900px";
+
+    card.addEventListener("mouseenter", () => {
+      hoveredCard = card;
+      cardRect = card.getBoundingClientRect(); // cache on enter
+    });
+    card.addEventListener("mouseleave", () => {
+      hoveredCard = null;
+      // Spring back via CSS transition
+      card.style.setProperty("--rx", "0deg");
+      card.style.setProperty("--ry", "0deg");
+      card.style.transform = "rotateX(0deg) rotateY(0deg)";
+      TILTX = 0;
+      TILTY = 0;
+    });
+    // Refresh cached rect if card is scrolled
+    card.addEventListener(
+      "mouseenter",
+      () => {
+        cardRect = card.getBoundingClientRect();
+      },
+      { passive: true },
+    );
   });
 
-  function lerpRing() {
-    rx += (mx - rx) * 0.14;
-    ry += (my - ry) * 0.14;
-    ring.style.left = rx + "px";
-    ring.style.top = ry + "px";
-    const dist = Math.hypot(mx - rx, my - ry);
-    raf = dist > 0.5 ? requestAnimationFrame(lerpRing) : null;
+  /* ── Single mousemove handler ── */
+  document.addEventListener(
+    "mousemove",
+    (e) => {
+      RX = e.clientX;
+      RY = e.clientY;
+      if (spotlight) spotlight.classList.add("active");
+      // Refresh hovered card rect (cheap — no layout triggers here)
+      if (hoveredCard) cardRect = hoveredCard.getBoundingClientRect();
+      if (!needsFrame) {
+        needsFrame = true;
+        requestAnimationFrame(frame);
+      }
+    },
+    { passive: true },
+  );
+
+  /* ── Click feedback on cursor ring ── */
+  if (ring) {
+    document.addEventListener("mousedown", () =>
+      ring.classList.add("cursor-click"),
+    );
+    document.addEventListener("mouseup", () =>
+      ring.classList.remove("cursor-click"),
+    );
+    document.addEventListener("mouseover", (e) => {
+      const t = e.target;
+      if (t && t.closest) {
+        const hover = t.closest(
+          "a, button, .project-card, .timeline-card, .about-card, .social-link, .b-key1, .b-key2, .b-esc",
+        );
+        ring.classList.toggle("cursor-hover", !!hover);
+      }
+    });
   }
 
-  const hoverTargets =
-    "a, button, .project-card, .timeline-card, .skill-category, .social-link, .b-key1, .b-key2, .b-esc, #dt-input, .boot-line";
-  document.addEventListener("mouseover", (e) => {
-    if (e.target.closest(hoverTargets)) ring.classList.add("cursor-hover");
-  });
-  document.addEventListener("mouseout", (e) => {
-    if (e.target.closest(hoverTargets)) ring.classList.remove("cursor-hover");
-  });
-  document.addEventListener("mousedown", () =>
-    ring.classList.add("cursor-click"),
-  );
-  document.addEventListener("mouseup", () =>
-    ring.classList.remove("cursor-click"),
-  );
-})();
+  /* ── THE ONE rAF LOOP ── */
+  const LERP_CURSOR = 0.18; // cursor ring lag (fast)
+  const LERP_SPOTLIGHT = 0.08; // spotlight lag  (slow/dreamy)
+  const LERP_TILT = 0.15; // card tilt lag  (snappy)
 
-// ─── HERO TYPEWRITER ───
-(function initTypewriter() {
-  const el = document.getElementById("hero-role-text");
-  if (!el) return;
-  let height = el.offsetHeight || 80;
-  // Add caret
-  const caret = document.createElement("span");
-  caret.className = "typewriter-caret";
-  caret.style.height = "0.75em";
-  el.parentNode.insertBefore(caret, el.nextSibling);
+  function frame() {
+    needsFrame = false;
 
-  const ROLES = [
-    "Srivastava",
-    "Platform Engineer",
-    "DevOps Manager",
-    "Site Reliability",
-  ];
-  let roleIdx = 0;
-  let charIdx = 0;
-  let deleting = false;
-  let paused = false;
+    let dirty = false;
 
-  function tick() {
-    const target = ROLES[roleIdx];
-    if (paused) {
-      paused = false;
-      setTimeout(tick, deleting ? 80 : 1800);
-      return;
-    }
-    if (!deleting) {
-      charIdx++;
-      el.textContent = target.slice(0, charIdx);
-      if (charIdx === target.length) {
-        paused = true;
-        deleting = true;
-      }
-    } else {
-      charIdx--;
-      el.textContent = target.slice(0, charIdx);
-      if (charIdx === 0) {
-        deleting = false;
-        roleIdx = (roleIdx + 1) % ROLES.length;
-        paused = true;
+    // ── 1. Cursor ring (GPU transform, no layout) ───────────────
+    if (ring && dot) {
+      // Dot snaps instantly (visually anchored to real cursor)
+      dot.style.transform = `translate3d(${RX}px, ${RY}px, 0) translate(-50%, -50%)`;
+
+      // Ring lerps
+      const dCX = RX - CX,
+        dCY = RY - CY;
+      if (Math.abs(dCX) > 0.3 || Math.abs(dCY) > 0.3) {
+        CX += dCX * LERP_CURSOR;
+        CY += dCY * LERP_CURSOR;
+        ring.style.transform = `translate3d(${CX}px, ${CY}px, 0) translate(-50%, -50%)`;
+        dirty = true;
       }
     }
-    setTimeout(tick, deleting ? 42 : 88);
+
+    // ── 2. Spotlight (CSS custom props on fixed element) ─────────
+    if (spotlight) {
+      const dSX = RX - SX,
+        dSY = RY - SY;
+      if (Math.abs(dSX) > 0.5 || Math.abs(dSY) > 0.5) {
+        SX += dSX * LERP_SPOTLIGHT;
+        SY += dSY * LERP_SPOTLIGHT;
+        spotlight.style.setProperty("--mx", SX.toFixed(0) + "px");
+        spotlight.style.setProperty("--my", SY.toFixed(0) + "px");
+        dirty = true;
+      }
+    }
+
+    // ── 3. Card tilt (CSS transform, GPU-composited) ─────────────
+    if (hoveredCard && cardRect) {
+      const relX = Math.max(
+        0,
+        Math.min(1, (RX - cardRect.left) / cardRect.width),
+      );
+      const relY = Math.max(
+        0,
+        Math.min(1, (RY - cardRect.top) / cardRect.height),
+      );
+
+      const targetTX = -(relY - 0.5) * 2 * MAX_TILT;
+      const targetTY = (relX - 0.5) * 2 * MAX_TILT;
+
+      const dTX = targetTX - TILTX,
+        dTY = targetTY - TILTY;
+      if (Math.abs(dTX) > 0.02 || Math.abs(dTY) > 0.02) {
+        TILTX += dTX * LERP_TILT;
+        TILTY += dTY * LERP_TILT;
+        hoveredCard.style.transform = `rotateX(${TILTX.toFixed(2)}deg) rotateY(${TILTY.toFixed(2)}deg)`;
+
+        // Sheen position (just CSS custom props, zero cost)
+        const sheen = hoveredCard.querySelector(".tilt-sheen");
+        if (sheen) {
+          sheen.style.setProperty("--cx", (relX * 100).toFixed(0) + "%");
+          sheen.style.setProperty("--cy", (relY * 100).toFixed(0) + "%");
+        }
+        dirty = true;
+      }
+    } else if (TILTX !== 0 || TILTY !== 0) {
+      // Spring back to flat
+      TILTX *= 0.75;
+      TILTY *= 0.75;
+      if (Math.abs(TILTX) < 0.05 && Math.abs(TILTY) < 0.05) {
+        TILTX = 0;
+        TILTY = 0;
+      } else {
+        dirty = true;
+      }
+    }
+
+    if (dirty) {
+      needsFrame = true;
+      requestAnimationFrame(frame);
+    }
   }
-  // Start after hero animation delay
-  setTimeout(tick, 2200);
 })();
+
+console.log(
+  "%c\uD83D\uDC4B Hey there! Palash built this portfolio.",
+  "color: #63b3ed; font-size: 14px; font-weight: bold;",
+);
+console.log(
+  "%cTake a look at the source \u2014 clean code matters :)",
+  "color: #9f7aea; font-size: 12px;",
+);
 
 // ─── LIVE SLO UPTIME CALCULATOR ───
 (function calcUptime() {

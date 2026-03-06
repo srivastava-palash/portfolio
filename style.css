@@ -2041,20 +2041,21 @@ img {
    ══════════════════════════════════════════════════════════════ */
 #custom-cursor {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 36px;
   height: 36px;
   border: 2px solid rgba(99, 179, 237, 0.6);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
-  transform: translate(-50%, -50%);
+  /* transform set by JS: translate3d(x,y,0) translate(-50%,-50%) */
   transition:
     width 0.2s,
     height 0.2s,
     border-color 0.2s,
     background 0.2s;
-  mix-blend-mode: normal;
-  will-change: left, top;
+  will-change: transform;
 }
 #custom-cursor.cursor-hover {
   width: 52px;
@@ -2069,17 +2070,16 @@ img {
 }
 #custom-cursor-dot {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 5px;
   height: 5px;
   background: var(--accent-1);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.1s,
-    height 0.1s;
-  will-change: left, top;
+  /* transform set by JS: translate3d(x,y,0) translate(-50%,-50%) */
+  will-change: transform;
 }
 @media (hover: none) {
   #custom-cursor,

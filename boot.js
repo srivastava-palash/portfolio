@@ -870,6 +870,12 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
   let dtBody, dtInput;
   let cmdHistory = [];
   let historyIdx = -1;
+  let CMDS_CACHE = null; // lazily built once after terminal opens
+  function getCMDS() {
+    if (!CMDS_CACHE)
+      CMDS_CACHE = makeCommands(addLine, printLines, dtBody, dtInput);
+    return CMDS_CACHE;
+  }
 
   function addLine(cls, text) {
     const d = document.createElement("span");
@@ -985,7 +991,7 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
     const kubM = lc.match(/^kubectl\s+(.+)$/);
     if (kubM) {
       const sub = "kubectl " + kubM[1];
-      const CMDS = makeCommands(addLine, printLines, dtBody, dtInput);
+      const CMDS = getCMDS();
       if (CMDS[sub]) {
         CMDS[sub]();
         return;
@@ -998,7 +1004,7 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
     const tfM = lc.match(/^terraform\s+(.+)$/);
     if (tfM) {
       const sub = "terraform " + tfM[1];
-      const CMDS = makeCommands(addLine, printLines, dtBody, dtInput);
+      const CMDS = getCMDS();
       if (CMDS[sub]) {
         CMDS[sub]();
         return;
@@ -1019,13 +1025,13 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
       lc === "./deploy.sh" ||
       lc === "make deploy"
     ) {
-      const CMDS = makeCommands(addLine, printLines, dtBody, dtInput);
+      const CMDS = getCMDS();
       CMDS["deploy prod"]();
       return;
     }
 
     // Standard commands
-    const CMDS = makeCommands(addLine, printLines, dtBody, dtInput);
+    const CMDS = getCMDS();
     if (CMDS[lc]) {
       CMDS[lc]();
       return;
