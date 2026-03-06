@@ -1,0 +1,405 @@
+/* ═══════════════════════════════════════════════════════════════
+   DESKTOP OS — macOS-inspired window manager
+   Only activates on screens ≥ 960px. Mobile sees normal portfolio.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── WALLPAPER ─── */
+@media (min-width: 960px) {
+  body {
+    background:
+      /* subtle noise grain */
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"),
+      /* dark gradient wallpaper */
+        radial-gradient(ellipse at 30% 20%, #1a1f35 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, #0d1525 0%, transparent 50%),
+      #0b0f1a;
+    overflow: hidden;
+  }
+}
+
+/* ─── OS DESKTOP CONTAINER ─── */
+.os-desktop {
+  display: contents; /* invisible on mobile */
+}
+
+@media (min-width: 960px) {
+  .os-desktop {
+    display: grid;
+    grid-template-rows: 28px 1fr 68px;
+    grid-template-columns: 90px 1fr 90px;
+    grid-template-areas:
+      "menu  menu  menu"
+      "left  win   right"
+      "dock  dock  dock";
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+}
+
+/* ═══════════════════════════════════════
+   MENU BAR (macOS style)
+   ═══════════════════════════════════════ */
+.os-menubar {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .os-menubar {
+    grid-area: menu;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(15, 20, 35, 0.85);
+    backdrop-filter: blur(20px) saturate(1.3);
+    -webkit-backdrop-filter: blur(20px) saturate(1.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 0 16px;
+    z-index: 10000;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.01em;
+    user-select: none;
+  }
+  .os-menu-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .os-menu-logo {
+    font-weight: 800;
+    font-size: 14px;
+    color: #63b3ed;
+    letter-spacing: -0.02em;
+  }
+  .os-menu-item {
+    cursor: default;
+    padding: 2px 0;
+    transition: opacity 0.15s;
+  }
+  .os-menu-item:hover {
+    opacity: 0.65;
+  }
+  .os-menu-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    font-family: "JetBrains Mono", monospace;
+  }
+  .os-menu-right svg {
+    width: 14px;
+    height: 14px;
+  }
+  #os-clock {
+    min-width: 52px;
+    text-align: right;
+  }
+}
+
+/* ═══════════════════════════════════════
+   DESKTOP ICONS
+   ═══════════════════════════════════════ */
+.os-icons {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .os-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 8px;
+    z-index: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .os-icons::-webkit-scrollbar {
+    display: none;
+  }
+  .os-icons--left {
+    grid-area: left;
+    align-items: center;
+  }
+  .os-icons--right {
+    grid-area: right;
+    align-items: center;
+  }
+
+  .os-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 6px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    transition:
+      background 0.15s,
+      transform 0.15s;
+    user-select: none;
+    width: 72px;
+    text-align: center;
+  }
+  .os-icon:hover {
+    background: rgba(99, 179, 237, 0.12);
+    transform: scale(1.05);
+  }
+  .os-icon:active {
+    transform: scale(0.95);
+  }
+  .os-icon-img {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    line-height: 1;
+  }
+  .os-icon-label {
+    font-size: 10px;
+    font-family: "Inter", sans-serif;
+    line-height: 1.2;
+    max-width: 68px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.65);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* ═══════════════════════════════════════
+   MAIN WINDOW
+   ═══════════════════════════════════════ */
+.os-window {
+  display: contents;
+}
+.os-titlebar {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .os-window {
+    grid-area: win;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-base, #0d1117);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    box-shadow:
+      0 25px 80px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.04);
+    margin: 8px 0;
+    min-height: 0;
+  }
+
+  /* ── Title bar ── */
+  .os-titlebar {
+    display: flex;
+    align-items: center;
+    height: 38px;
+    min-height: 38px;
+    background: rgba(22, 27, 45, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 0 14px;
+    gap: 10px;
+    user-select: none;
+    -webkit-app-region: drag;
+  }
+
+  /* Traffic lights */
+  .os-traffic {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+  }
+  .os-tl {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 0.5px solid rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .os-tl:hover {
+    opacity: 0.8;
+  }
+  .os-tl--close {
+    background: #ff5f57;
+  }
+  .os-tl--min {
+    background: #febc2e;
+  }
+  .os-tl--max {
+    background: #28c840;
+  }
+
+  .os-win-title {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  /* Tab-like breadcrumb */
+  .os-tabs {
+    display: flex;
+    gap: 0;
+    margin-left: auto;
+    margin-right: 40px; /* balance with traffic lights */
+  }
+  .os-tab {
+    font-size: 11px;
+    padding: 4px 10px;
+    color: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    cursor: default;
+    transition:
+      color 0.15s,
+      background 0.15s;
+    font-family: "JetBrains Mono", monospace;
+  }
+  .os-tab.active {
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  /* ── Content area (scrollable) ── */
+  .os-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 179, 237, 0.2) transparent;
+  }
+  .os-content::-webkit-scrollbar {
+    width: 6px;
+  }
+  .os-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .os-content::-webkit-scrollbar-thumb {
+    background: rgba(99, 179, 237, 0.2);
+    border-radius: 3px;
+  }
+  .os-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 179, 237, 0.35);
+  }
+
+  /* Inside the window, the nav becomes a toolbar-like element */
+  .os-content #navbar {
+    position: sticky;
+    border-radius: 0;
+  }
+}
+
+/* ═══════════════════════════════════════
+   DOCK (bottom bar)
+   ═══════════════════════════════════════ */
+.os-dock {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .os-dock {
+    grid-area: dock;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px 16px;
+    z-index: 10000;
+  }
+  .os-dock-inner {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    background: rgba(15, 20, 35, 0.7);
+    backdrop-filter: blur(20px) saturate(1.3);
+    -webkit-backdrop-filter: blur(20px) saturate(1.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 6px 12px;
+  }
+  .os-dock-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+  }
+  .os-dock-item:hover {
+    transform: translateY(-8px) scale(1.25);
+  }
+  .os-dock-item:hover ~ .os-dock-item {
+    transform: translateY(-2px) scale(1.05);
+  }
+
+  .os-dock-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    background: rgba(30, 40, 65, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: box-shadow 0.2s;
+  }
+  .os-dock-item:hover .os-dock-icon {
+    box-shadow: 0 4px 20px rgba(99, 179, 237, 0.25);
+  }
+
+  /* Tooltip */
+  .os-dock-tooltip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 20, 35, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.8);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+    font-family: "Inter", sans-serif;
+  }
+  .os-dock-item:hover .os-dock-tooltip {
+    opacity: 1;
+  }
+
+  /* Active dot under dock icon */
+  .os-dock-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(99, 179, 237, 0.6);
+  }
+}
+
+/* ═══════════════════════════════════════
+   ADJUSTMENTS INSIDE WINDOW
+   ═══════════════════════════════════════ */
+@media (min-width: 960px) {
+  /* Hero doesn't need full viewport height inside window */
+  #hero {
+    min-height: calc(100vh - 170px);
+  }
+}
