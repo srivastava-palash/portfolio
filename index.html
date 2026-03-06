@@ -30,6 +30,53 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- ═══ BOOT OVERLAY ═══ -->
+    <div id="boot-overlay">
+      <div class="boot-scanlines"></div>
+      <div id="boot-terminal-ui">
+        <div id="boot-output"></div>
+        <div class="boot-prompt-row" id="boot-prompt-row" style="display: none">
+          <span class="boot-arrow">❯&nbsp;</span
+          ><span class="boot-cursor-blink">█</span>
+        </div>
+      </div>
+      <button id="skip-btn" aria-label="Skip intro">Skip [ESC]</button>
+    </div>
+
+    <!-- ═══ DEVOPS TERMINAL OVERLAY ═══ -->
+    <div
+      id="devops-terminal"
+      class="hidden"
+      role="application"
+      aria-label="DevOps Terminal"
+    >
+      <div id="dt-header">
+        <div class="dt-dots">
+          <span class="tw-btn tw-red"></span>
+          <span class="tw-btn tw-yellow"></span>
+          <span class="tw-btn tw-green"></span>
+        </div>
+        <span class="dt-title-bar"
+          >palash@portfolio:~ — interactive terminal</span
+        >
+        <button id="dt-exit" aria-label="Switch to GUI mode">
+          Switch to GUI →
+        </button>
+      </div>
+      <div id="dt-body" aria-live="polite"></div>
+      <div class="dt-input-wrap">
+        <span class="dt-prompt-label">palash@portfolio:~$&nbsp;</span>
+        <input
+          type="text"
+          id="dt-input"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="type 'help' to start"
+          aria-label="Terminal command input"
+        />
+      </div>
+    </div>
+
     <!-- ─── NAV ─── -->
     <nav id="navbar">
       <div class="nav-inner">
@@ -57,53 +104,116 @@
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
         <div class="grid-overlay"></div>
-      </div>
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="status-dot"></span>
-          Available for new opportunities
+        <!-- Floating container cubes -->
+        <div class="cube-float cf-1">
+          <div class="cube">
+            <div class="face top"></div>
+            <div class="face front"></div>
+            <div class="face right"></div>
+          </div>
         </div>
-        <h1 class="hero-name">
-          Palash<br /><span class="gradient-text">Srivastava</span>
-        </h1>
-        <p class="hero-title">
-          Head of Platform &bull; DevOps Manager &bull; Site Reliability
-        </p>
-        <p class="hero-sub">
-          Hands-on reliability and platform leader with
-          <strong>9+ years</strong> building and operating scalable,
-          production-grade infrastructure.
-        </p>
-        <div class="hero-actions">
-          <a href="#experience" class="btn-primary" id="hero-cta"
-            >View My Work</a
-          >
-          <a href="#contact" class="btn-ghost" id="hero-contact"
-            >Get in Touch</a
-          >
+        <div class="cube-float cf-2">
+          <div class="cube">
+            <div class="face top"></div>
+            <div class="face front"></div>
+            <div class="face right"></div>
+          </div>
         </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-num">9+</span>
-            <span class="stat-label">Years Experience</span>
+        <div class="cube-float cf-3">
+          <div class="cube">
+            <div class="face top"></div>
+            <div class="face front"></div>
+            <div class="face right"></div>
           </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <span class="stat-num">50%</span>
-            <span class="stat-label">AWS Cost Reduction</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <span class="stat-num">70%</span>
-            <span class="stat-label">Faster Deployments</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <span class="stat-num">5×</span>
-            <span class="stat-label">Traffic Scale</span>
+        </div>
+        <div class="cube-float cf-4">
+          <div class="cube">
+            <div class="face top"></div>
+            <div class="face front"></div>
+            <div class="face right"></div>
           </div>
         </div>
       </div>
+
+      <div class="hero-layout">
+        <!-- Left: text -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="status-dot"></span>
+            Available for new opportunities
+          </div>
+          <h1 class="hero-name">
+            Palash<br /><span class="gradient-text">Srivastava</span>
+          </h1>
+          <p class="hero-title">
+            Head of Platform &bull; DevOps Manager &bull; Site Reliability
+          </p>
+          <p class="hero-sub">
+            Hands-on reliability and platform leader with
+            <strong>9+ years</strong> building and operating scalable,
+            production-grade infrastructure.
+          </p>
+          <div class="hero-actions">
+            <a href="#experience" class="btn-primary" id="hero-cta"
+              >View My Work</a
+            >
+            <a href="#contact" class="btn-ghost" id="hero-contact"
+              >Get in Touch</a
+            >
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-num">9+</span
+              ><span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-num">50%</span
+              ><span class="stat-label">AWS Cost Reduction</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-num">70%</span
+              ><span class="stat-label">Faster Deployments</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-num">5&times;</span
+              ><span class="stat-label">Traffic Scale</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: animated terminal -->
+        <div class="hero-terminal-wrap">
+          <div class="terminal-window" id="hero-terminal">
+            <div class="tw-titlebar">
+              <span class="tw-btn tw-red"></span>
+              <span class="tw-btn tw-yellow"></span>
+              <span class="tw-btn tw-green"></span>
+              <span class="tw-title">palash@platform:~</span>
+            </div>
+            <div class="tw-body" id="tw-body"></div>
+          </div>
+          <!-- K8s pod cluster decoration -->
+          <div class="k8s-cluster" id="k8s-cluster">
+            <div class="k8s-label">k8s cluster &bull; prod</div>
+            <div class="k8s-pods">
+              <div class="k8s-pod pod-running" title="pod: api-7d4f"></div>
+              <div class="k8s-pod pod-running" title="pod: api-8c2a"></div>
+              <div class="k8s-pod pod-running" title="pod: api-1e9b"></div>
+              <div class="k8s-pod pod-running" title="pod: worker-3f1c"></div>
+              <div class="k8s-pod pod-running" title="pod: worker-9d4e"></div>
+              <div
+                class="k8s-pod pod-new"
+                id="k8s-new-pod"
+                title="pod: api-2b6f (new)"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="scroll-hint" id="scroll-hint">
         <span>Scroll</span>
         <div class="scroll-line"></div>
@@ -205,6 +315,80 @@
       </div>
     </section>
 
+    <!-- ─── CI/CD PIPELINE STRIP ─── -->
+    <div class="pipeline-strip" id="pipeline-strip">
+      <div class="pipeline-inner">
+        <div class="pipeline-node pn-done" id="pn-commit">
+          <div class="pn-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17 12c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5zm-5-7C6.48 5 2 9.48 2 15h2c0-4.41 3.59-8 8-8s8 3.59 8 8h2c0-5.52-4.48-10-10-10z"
+              />
+            </svg>
+          </div>
+          <span>git push</span>
+        </div>
+        <div class="pipeline-connector">
+          <div class="pc-dot"></div>
+          <div class="pc-dot"></div>
+          <div class="pc-dot"></div>
+        </div>
+        <div class="pipeline-node pn-done" id="pn-lint">
+          <div class="pn-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+            </svg>
+          </div>
+          <span>lint &amp; test</span>
+        </div>
+        <div class="pipeline-connector">
+          <div class="pc-dot"></div>
+          <div class="pc-dot"></div>
+          <div class="pc-dot"></div>
+        </div>
+        <div class="pipeline-node pn-done" id="pn-build">
+          <div class="pn-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M13.983 11.078h2.119a.186.186 0 0 0 .186-.185V9.006a.186.186 0 0 0-.186-.186h-2.119a.185.185 0 0 0-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 0 0 .186-.186V3.574a.186.186 0 0 0-.186-.185h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 0 0 .186-.186V6.29a.186.186 0 0 0-.186-.185h-2.118a.185.185 0 0 0-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 0 0 .184-.186V6.29a.185.185 0 0 0-.185-.185H8.1a.185.185 0 0 0-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 0 0 .185-.186V6.29a.185.185 0 0 0-.185-.185H5.136a.186.186 0 0 0-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 0 0 .186-.185V9.006a.186.186 0 0 0-.186-.186h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 0 0 .184-.185V9.006a.185.185 0 0 0-.184-.186h-2.12a.185.185 0 0 0-.184.185v1.888c0 .102.083.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 0 0-.75.748 11.376 11.376 0 0 0 .692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 0 0 3.823-1.389c.98-.567 1.86-1.314 2.61-2.208 1.248-1.512 1.988-3.195 2.532-4.698h.22c1.363 0 2.2-.55 2.7-1.009.197-.176.355-.394.452-.64l.062-.192z"
+              />
+            </svg>
+          </div>
+          <span>docker build</span>
+        </div>
+        <div class="pipeline-connector">
+          <div class="pc-dot"></div>
+          <div class="pc-dot"></div>
+          <div class="pc-dot"></div>
+        </div>
+        <div class="pipeline-node pn-done" id="pn-push">
+          <div class="pn-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M11.9985 0C11.7438 0 11.489.063 11.261.188L2.33 5.25A2.356 2.356 0 0 0 1.125 7.3v10.4c0 .841.446 1.619 1.206 2.05l8.93 5.062a2.35 2.35 0 0 0 2.477 0l8.93-5.063a2.356 2.356 0 0 0 1.207-2.05V7.3a2.357 2.357 0 0 0-1.207-2.05L12.738.188A2.342 2.342 0 0 0 12 0h-.0015zm.562 4.325a2.75 2.75 0 1 1 0 5.5 2.75 2.75 0 0 1 0-5.5z"
+              />
+            </svg>
+          </div>
+          <span>k8s deploy</span>
+        </div>
+        <div class="pipeline-connector">
+          <div class="pc-dot"></div>
+          <div class="pc-dot"></div>
+          <div class="pc-dot"></div>
+        </div>
+        <div class="pipeline-node pn-live" id="pn-live">
+          <div class="pn-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"
+              />
+            </svg>
+          </div>
+          <span>live 🚀</span>
+        </div>
+      </div>
+    </div>
+
     <!-- ─── EXPERIENCE ─── -->
     <section id="experience" class="section section-dark">
       <div class="container">
@@ -226,41 +410,37 @@
               <p class="exp-date">
                 📍 New York, USA &nbsp;|&nbsp; June 2024 – Present
               </p>
-              <ul class="exp-bullets">
-                <li>
-                  Drove SOC 2 Type II readiness by establishing security
-                  policies/processes and hardening infrastructure through
-                  remediation of security findings
-                </li>
-                <li>
-                  Reduced AWS spend by <strong>50% monthly</strong> through
-                  architectural optimization
-                </li>
-                <li>
-                  Led re-architecture of the core backend to support
-                  <strong>5× traffic growth</strong>
-                </li>
-                <li>
-                  Partnered with product, design, and engineering on platform
-                  roadmap
-                </li>
-                <li>
-                  Re-architected daily releases through CI/CD redesign,
-                  accelerating delivery velocity
-                </li>
-                <li>
-                  Orchestrated cloud infrastructure, deployment pipelines, and
-                  runtime operations for the Cru AI agent
-                </li>
-                <li>
-                  Improved developer experience by enabling on-demand PR-based
-                  review environments
-                </li>
-                <li>
-                  Owned and executed GitLab-to-GitHub migration, achieving
-                  <strong>70% reduction in deployment time</strong>
-                </li>
-              </ul>
+              <p class="exp-narrative">
+                Joining Constrafor meant walking into a fast-moving AI startup
+                and immediately owning the entire platform org — infrastructure,
+                pipelines, security, and the chaos that comes with scaling
+                quickly. My first major push was getting us to
+                <strong>SOC 2 Type II</strong>, which wasn't just a compliance
+                checkbox — it meant rethinking how we handled access, hardening
+                systems that had grown organically, and building the kind of
+                security culture that actually sticks with engineers.
+              </p>
+              <p class="exp-narrative">
+                On the cost side, I tore apart our AWS architecture and found we
+                were paying for a lot of assumptions that no longer held. By
+                restructuring services and rightsizing infrastructure, I brought
+                the monthly cloud bill down by <strong>50%</strong> without
+                touching product velocity. Around the same time, I led the
+                re-architecture of our core backend to handle 5x our existing
+                traffic — a project that required close collaboration with
+                engineering leads and a lot of careful tradeoff decisions.
+              </p>
+              <p class="exp-narrative">
+                One of the most impactful things I shipped here was migrating
+                our entire CI/CD system from GitLab to GitHub Actions. It wasn't
+                just a tooling switch — we redesigned the entire delivery
+                workflow, and the result was a
+                <strong>70% reduction in deployment time</strong> and a release
+                process that engineers actually trust. I also introduced
+                ephemeral PR-based environments, so every pull request gets its
+                own live preview — something that fundamentally changed how the
+                team thinks about code review.
+              </p>
               <div class="exp-tags">
                 <span>AWS</span><span>GitHub Actions</span><span>Terraform</span
                 ><span>SOC 2</span><span>Kubernetes</span><span>Datadog</span>
@@ -281,23 +461,23 @@
               <p class="exp-date">
                 📍 New York, USA &nbsp;|&nbsp; Nov 2023 – May 2024
               </p>
-              <ul class="exp-bullets">
-                <li>
-                  Conducted AWS service review, achieving a
-                  <strong>15% reduction</strong> in overall costs
-                </li>
-                <li>
-                  Enhanced AWS security by remediating vulnerabilities and
-                  ensuring compliance
-                </li>
-                <li>
-                  Negotiated vendor contracts seeking efficiencies and
-                  continuity
-                </li>
-              </ul>
+              <p class="exp-narrative">
+                CertiK is one of the leading blockchain security firms, and they
+                brought me in to audit and optimize their AWS footprint. The
+                environment had scaled fast — as companies in the crypto space
+                tend to do — and there were real inefficiencies hiding in plain
+                sight. I conducted a systematic AWS service review that surfaced
+                <strong>15% in cost savings</strong>, but the more important
+                work was on the security side: remediating vulnerabilities,
+                tightening IAM policies, and ensuring the infrastructure matched
+                the security-first brand the company projects externally. I also
+                worked the vendor side, renegotiating contracts to get better
+                rates without sacrificing reliability.
+              </p>
               <div class="exp-tags">
                 <span>AWS</span><span>Security</span
-                ><span>Cost Optimization</span><span>Compliance</span>
+                ><span>Cost Optimization</span><span>IAM</span
+                ><span>Compliance</span>
               </div>
             </div>
           </div>
@@ -317,28 +497,31 @@
               <p class="exp-date">
                 📍 New York, USA &nbsp;|&nbsp; Jan 2022 – Nov 2023
               </p>
-              <ul class="exp-bullets">
-                <li>
-                  Developed and integrated central monitoring using Prometheus
-                  and Grafana
-                </li>
-                <li>
-                  Led a POC to migrate VaR calculations from on-premises to GCP,
-                  resulting in a <strong>20% efficiency increase</strong> and
-                  <strong>30% cost reduction</strong>
-                </li>
-                <li>
-                  Scripted Jenkins pipeline and agents to do end-to-end
-                  deployment of Risk Product
-                </li>
-                <li>
-                  Designed technical infrastructure design documents for cloud
-                  migration
-                </li>
-                <li>
-                  Migrated DEV and PPE infrastructure from Docker Swarm to GKE
-                </li>
-              </ul>
+              <p class="exp-narrative">
+                After proving myself in the SRE role, I transitioned into a
+                hybrid DevOps/Software Engineering position where I got to build
+                things from scratch rather than just keeping them alive. The
+                biggest project I led was a proof-of-concept to migrate complex
+                VaR (Value at Risk) financial calculations off aging on-premise
+                hardware and onto GCP. The numbers spoke for themselves —
+                <strong
+                  >20% efficiency gains and 30% lower operational costs</strong
+                >
+                — and it laid the groundwork for a broader cloud migration
+                strategy.
+              </p>
+              <p class="exp-narrative">
+                On the automation side, I built out Jenkins pipelines that
+                handled the full end-to-end deployment of the Risk Product —
+                something the team had previously done manually and
+                inconsistently. I also designed the observability stack using
+                Prometheus and Grafana, which gave the engineering org its first
+                real view into system health across environments. And when it
+                came time to modernize our container infrastructure, I drove the
+                migration from Docker Swarm to GKE — a shift that gave us proper
+                orchestration primitives and made future scaling dramatically
+                cleaner.
+              </p>
               <div class="exp-tags">
                 <span>GCP</span><span>Kubernetes</span><span>Jenkins</span
                 ><span>Prometheus</span><span>Grafana</span><span>Docker</span>
@@ -359,24 +542,25 @@
               <p class="exp-date">
                 📍 New York, USA &nbsp;|&nbsp; Sept 2019 – Dec 2021
               </p>
-              <ul class="exp-bullets">
-                <li>
-                  Redesigned production for site-awareness, cutting disaster
-                  fail-over time by <strong>70%</strong>
-                </li>
-                <li>
-                  Implemented proactive monitoring, alerting and trend analysis
-                  using Python
-                </li>
-                <li>
-                  Administered and deployed Docker Swarm across dev, UAT and
-                  prod environments
-                </li>
-                <li>
-                  Resolved production incidents and implemented preventative
-                  solutions
-                </li>
-              </ul>
+              <p class="exp-narrative">
+                This is where I really fell in love with reliability
+                engineering. TS Imagine runs trading software where downtime
+                literally costs money — pressure that sharpens your instincts
+                fast. My most consequential project was redesigning the
+                production environment for proper site-awareness, which meant
+                rethinking how the system handled failures across data centers.
+                When we were done, disaster failover time had dropped by
+                <strong>70%</strong>. That's not a number you forget.
+              </p>
+              <p class="exp-narrative">
+                Beyond the architecture work, I built out a proactive monitoring
+                and alerting system in Python that shifted the team from
+                reactive firefighting to actually catching problems before they
+                became incidents. Managing Docker Swarm across dev, UAT, and
+                production environments taught me a lot about the operational
+                overhead of container orchestration at scale — lessons that made
+                me a much better infrastructure engineer going forward.
+              </p>
               <div class="exp-tags">
                 <span>SRE</span><span>Docker Swarm</span><span>Python</span
                 ><span>Monitoring</span><span>Incident Response</span>
@@ -384,61 +568,45 @@
             </div>
           </div>
 
-          <div class="timeline-item" id="exp-fis-pa">
+          <div class="timeline-item" id="exp-fis">
             <div class="timeline-dot"></div>
             <div class="timeline-card">
               <div class="exp-header">
                 <div>
                   <h3 class="exp-company">FIS</h3>
-                  <p class="exp-role">Programmer Analyst</p>
+                  <p class="exp-role">
+                    Derivatives Analyst &rarr; Programmer Analyst
+                  </p>
                 </div>
-                <span class="exp-badge">4 months</span>
+                <span class="exp-badge">2+ years</span>
               </div>
               <p class="exp-date">
-                📍 San Diego, USA &nbsp;|&nbsp; May 2019 – Sept 2019
+                📍 Jersey City &amp; San Diego, USA &nbsp;|&nbsp; Apr 2017 –
+                Sept 2019
               </p>
-              <ul class="exp-bullets">
-                <li>
-                  Designed and developed data models, reports and interfaces
-                  using Oracle PL/SQL
-                </li>
-                <li>
-                  Collaborated with clients and gathered requirements for ACBS
-                  suite development
-                </li>
-              </ul>
-              <div class="exp-tags">
-                <span>Oracle</span><span>PL/SQL</span><span>Data Modeling</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="timeline-item" id="exp-fis-da">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="exp-header">
-                <div>
-                  <h3 class="exp-company">FIS</h3>
-                  <p class="exp-role">Derivatives Analyst</p>
-                </div>
-                <span class="exp-badge">2 years</span>
-              </div>
-              <p class="exp-date">
-                📍 Jersey City, USA &nbsp;|&nbsp; Apr 2017 – May 2019
+              <p class="exp-narrative">
+                My career started in fintech operations at FIS, one of the
+                world's largest financial technology companies. As a Derivatives
+                Analyst in Jersey City, I kept trading systems alive under real
+                market pressure — L2/L3 support on systems where instability
+                directly impacts trading desks. I built alert monitoring on ITRS
+                Geneos to catch server issues before they cascaded, which gave
+                me my first taste of what it means to own uptime.
               </p>
-              <ul class="exp-bullets">
-                <li>
-                  Scripted alert monitoring on ITRS Geneos to maintain stability
-                  of servers
-                </li>
-                <li>
-                  Provided L2/L3 support for application breakdowns ensuring
-                  trading stability
-                </li>
-              </ul>
+              <p class="exp-narrative">
+                Moving into the Programmer Analyst role in San Diego, I
+                channeled that operations experience into building — developing
+                data models, reports, and interfaces using Oracle PL/SQL for the
+                ACBS loan management suite. Working directly with clients to
+                gather requirements early on gave me a communication intuition
+                that I still carry today: understanding what someone actually
+                needs versus what they say they need is half the engineering
+                problem.
+              </p>
               <div class="exp-tags">
-                <span>ITRS Geneos</span><span>Monitoring</span
-                ><span>L2/L3 Support</span><span>Finance</span>
+                <span>ITRS Geneos</span><span>Oracle PL/SQL</span
+                ><span>Monitoring</span><span>L2/L3 Support</span
+                ><span>Finance</span>
               </div>
             </div>
           </div>
@@ -976,6 +1144,7 @@
       </div>
     </footer>
 
+    <script src="boot.js"></script>
     <script src="main.js"></script>
   </body>
 </html>

@@ -231,6 +231,123 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// ─── TERMINAL ANIMATION ───
+(function initTerminal() {
+  const body = document.getElementById("tw-body");
+  if (!body) return;
+
+  let minor = 1;
+  let patch = 0;
+
+  const LINES = () => {
+    patch = (patch + 1) % 10;
+    const ver = `v2.${minor}.${patch}`;
+    return [
+      { cls: "tw-cmd", text: `$ git push origin main` },
+      { cls: "tw-info", text: `  ↑ triggering GitHub Actions...`, delay: 700 },
+      {
+        cls: "tw-dim",
+        text: `  ─────────────────────────────────`,
+        delay: 400,
+      },
+      {
+        cls: "tw-info",
+        text: `  ❯ lint            `,
+        delay: 600,
+        suffix: { cls: "tw-ok", text: "✓  1.2s" },
+      },
+      {
+        cls: "tw-info",
+        text: `  ❯ unit-tests      `,
+        delay: 900,
+        suffix: { cls: "tw-ok", text: "✓ 44s" },
+      },
+      {
+        cls: "tw-info",
+        text: `  ❯ docker build    `,
+        delay: 1100,
+        suffix: { cls: "tw-ok", text: "✓ 58s" },
+      },
+      {
+        cls: "tw-info",
+        text: `  ❯ push ecr        `,
+        delay: 700,
+        suffix: { cls: "tw-ok", text: "✓ 19s" },
+      },
+      {
+        cls: "tw-info",
+        text: `  ❯ k8s rollout     `,
+        delay: 1200,
+        suffix: { cls: "tw-ok", text: "✓ 32s" },
+      },
+      {
+        cls: "tw-dim",
+        text: `  ─────────────────────────────────`,
+        delay: 300,
+      },
+      { cls: "tw-live", text: `  🚀 ${ver} → prod   0s downtime`, delay: 600 },
+      { cls: "tw-ok", text: `  ✓ all pods healthy`, delay: 400 },
+    ];
+  };
+
+  function addLine(cls, text) {
+    const span = document.createElement("span");
+    span.className = `tw-line ${cls}`;
+    span.textContent = text;
+    body.appendChild(span);
+    body.scrollTop = body.scrollHeight;
+    return span;
+  }
+
+  function runSequence() {
+    body.innerHTML = "";
+    const lines = LINES();
+    let accDelay = 500;
+
+    lines.forEach((line, i) => {
+      const d = i === 0 ? 0 : line.delay || 500;
+      accDelay += d;
+
+      setTimeout(() => {
+        if (line.suffix) {
+          // add text part, then suffix after a brief "thinking" pause
+          const span = addLine(line.cls, line.text + "...");
+          setTimeout(() => {
+            const suf = document.createElement("span");
+            suf.className = `tw-line ${line.suffix.cls}`;
+            suf.textContent = line.suffix.text;
+            span.textContent = line.text;
+            span.appendChild(suf);
+          }, 800);
+        } else {
+          addLine(line.cls, line.text);
+        }
+
+        // add blinking cursor on last line
+        if (i === lines.length - 1) {
+          setTimeout(() => {
+            const cur = document.createElement("span");
+            cur.className = "tw-cursor";
+            body.appendChild(cur);
+            // trigger k8s pod spawn
+            const newPod = document.getElementById("k8s-new-pod");
+            if (newPod) {
+              newPod.style.animation = "none";
+              newPod.offsetHeight; // reflow
+              newPod.style.animation = "";
+            }
+            // loop
+            setTimeout(runSequence, 6000);
+          }, 400);
+        }
+      }, accDelay);
+    });
+  }
+
+  // Start after a short delay so page loads first
+  setTimeout(runSequence, 1200);
+})();
+
 console.log(
   "%c\uD83D\uDC4B Hey there! Palash built this portfolio.",
   "color: #63b3ed; font-size: 14px; font-weight: bold;",
