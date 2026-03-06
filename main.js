@@ -537,6 +537,56 @@ document.addEventListener("keydown", (e) => {
   }
 })();
 
+// ─── HERO TYPEWRITER ───
+(function initTypewriter() {
+  const el = document.getElementById("hero-role-text");
+  if (!el) return;
+
+  // Insert blinking caret right after the span
+  const caret = document.createElement("span");
+  caret.className = "typewriter-caret";
+  el.parentNode.insertBefore(caret, el.nextSibling);
+
+  const ROLES = [
+    "Srivastava",
+    "Platform Engineer",
+    "DevOps Manager",
+    "Site Reliability",
+  ];
+  let roleIdx = 0;
+  let charIdx = 0;
+  let deleting = false;
+  let paused = false;
+
+  function tick() {
+    const target = ROLES[roleIdx];
+    if (paused) {
+      paused = false;
+      setTimeout(tick, deleting ? 80 : 1800);
+      return;
+    }
+    if (!deleting) {
+      charIdx++;
+      el.textContent = target.slice(0, charIdx);
+      if (charIdx === target.length) {
+        paused = true;
+        deleting = true;
+      }
+    } else {
+      charIdx--;
+      el.textContent = target.slice(0, charIdx);
+      if (charIdx === 0) {
+        deleting = false;
+        roleIdx = (roleIdx + 1) % ROLES.length;
+        paused = true;
+      }
+    }
+    setTimeout(tick, deleting ? 42 : 88);
+  }
+  // Start after hero animation settles
+  setTimeout(tick, 2200);
+})();
+
 console.log(
   "%c\uD83D\uDC4B Hey there! Palash built this portfolio.",
   "color: #63b3ed; font-size: 14px; font-weight: bold;",
