@@ -378,8 +378,14 @@ document.addEventListener("keydown", (e) => {
   let TILTX = 0,
     TILTY = 0; // lerped tilt values
 
+  // Contact section — never tilt anything inside it (form must stay still)
+  const contactSection = document.getElementById("contact");
+
   // Inject sheen divs and tilt-card class into all tiltable cards
   document.querySelectorAll(TILT_SELECTORS).forEach((card) => {
+    // Skip if card is inside the contact section
+    if (contactSection && contactSection.contains(card)) return;
+
     card.classList.add("tilt-card");
     if (getComputedStyle(card).position === "static") {
       card.style.position = "relative";
@@ -387,9 +393,17 @@ document.addEventListener("keydown", (e) => {
     const sheen = document.createElement("div");
     sheen.className = "tilt-sheen";
     card.appendChild(sheen);
-    // Give parent perspective so 3D works
+    // Give parent perspective so 3D works — but never set it on section/body
     const p = card.parentElement;
-    if (!p.style.perspective) p.style.perspective = "900px";
+    const pTag = p.tagName.toLowerCase();
+    if (
+      !p.style.perspective &&
+      pTag !== "section" &&
+      pTag !== "body" &&
+      pTag !== "main"
+    ) {
+      p.style.perspective = "900px";
+    }
 
     card.addEventListener("mouseenter", () => {
       hoveredCard = card;
@@ -585,6 +599,52 @@ document.addEventListener("keydown", (e) => {
   }
   // Start after hero animation settles
   setTimeout(tick, 2200);
+})();
+
+// ─── CONTACT FORM (Web3Forms) ───
+(function initContactForm() {
+  const form = document.getElementById("contact-form");
+  const btn = document.getElementById("cf-submit-btn");
+  const success = document.getElementById("cf-success");
+  const error = document.getElementById("cf-error");
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Basic client-side validation
+    const name = form.querySelector("#cf-name").value.trim();
+    const email = form.querySelector("#cf-email").value.trim();
+    const message = form.querySelector("#cf-message").value.trim();
+    if (!name || !email || !message) return;
+
+    // Show loading state
+    btn.classList.add("loading");
+    btn.disabled = true;
+    success.style.display = "none";
+    error.style.display = "none";
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
+      });
+      const json = await res.json();
+
+      if (json.success) {
+        success.style.display = "flex";
+        form.reset();
+      } else {
+        error.style.display = "flex";
+      }
+    } catch (_) {
+      error.style.display = "flex";
+    } finally {
+      btn.classList.remove("loading");
+      btn.disabled = false;
+    }
+  });
 })();
 
 console.log(
