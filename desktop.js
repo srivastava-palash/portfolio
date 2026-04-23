@@ -57,6 +57,20 @@
     });
   }
 
+  // ─── MAXIMIZE button — toggle fullscreen overlay ───
+  const maxBtn = document.querySelector(".os-tl--max");
+  if (maxBtn && osWindow) {
+    maxBtn.addEventListener("click", () => {
+      const isMax = osWindow.classList.toggle("os-window--maximized");
+      osWindow.style.transition =
+        "transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-radius 0.3s ease";
+      if (!isMax) {
+        osWindow.style.transition =
+          "transform 0.25s ease-in, border-radius 0.25s ease";
+      }
+    });
+  }
+
   // ─── DESKTOP ICONS — smooth scroll to section ───
   document.querySelectorAll(".os-icon[data-section]").forEach((icon) => {
     icon.addEventListener("click", (e) => {
@@ -85,6 +99,19 @@
   // ─── ACTIVE TAB tracking based on scroll position ───
   const tabs = document.querySelectorAll(".os-tab[data-section]");
   if (tabs.length) {
+    // Click to navigate
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const targetId = tab.getAttribute("data-section");
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        tabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+      });
+    });
+
     const sectionIds = Array.from(tabs).map((t) =>
       t.getAttribute("data-section"),
     );
