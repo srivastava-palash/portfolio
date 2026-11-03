@@ -1190,7 +1190,7 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
 
     // Tab autocomplete (basic)
     dtInput.addEventListener("keydown", (e) => {
-      if (e.key === "Tab") {
+      if (e.key === "Tab" && !e.shiftKey) {
         e.preventDefault();
         const v = dtInput.value.toLowerCase();
         const candidates = [

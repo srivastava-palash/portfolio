@@ -840,7 +840,7 @@ body:has(dialog[open]) {
 .visual-note {
   margin-top: 18px;
   font-size: 8px;
-  color: #58705b;
+  color: #405d49;
   letter-spacing: 0.08em;
 }
 .visual-cloud {
@@ -1516,7 +1516,7 @@ details[open] > summary > span {
 }
 .form-note {
   font-size: 10px;
-  color: #637868;
+  color: #4f6655;
   text-align: center;
   margin-top: 18px;
 }

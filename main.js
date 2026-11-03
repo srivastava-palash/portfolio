@@ -247,11 +247,23 @@
   $("#command-trigger").addEventListener("click", openCommands);
   $("#command-close").addEventListener("click", () => commandDialog.close());
   commandDialog.addEventListener("click", (event) => {
-    if (event.target === commandDialog && event.offsetY < 0)
+    if (event.target !== commandDialog) return;
+    const bounds = commandDialog.getBoundingClientRect();
+    if (
+      event.clientX < bounds.left ||
+      event.clientX > bounds.right ||
+      event.clientY < bounds.top ||
+      event.clientY > bounds.bottom
+    )
       commandDialog.close();
   });
   commandSearch.addEventListener("input", renderCommands);
   commandDialog.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      commandDialog.close();
+      return;
+    }
     const buttons = $$(".command-result");
     const index = buttons.indexOf(document.activeElement);
     if (event.key === "ArrowDown" && buttons.length) {
@@ -309,7 +321,7 @@
         menuButton.focus();
       }
     }
-    if (event.key === "Tab" && terminalIsOpen()) {
+    if (event.key === "Tab" && terminalIsOpen() && !event.defaultPrevented) {
       const focusable = [$("#dt-exit"), $("#dt-input")].filter(
         (element) => !element.disabled
       );
