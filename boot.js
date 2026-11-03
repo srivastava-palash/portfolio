@@ -1142,11 +1142,11 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
         { cls: "dt-blank", text: "" },
         {
           cls: "dt-info",
-          text: "  You chose DevOps Mode. Navigate this portfolio like a pro.",
+          text: "  Welcome to the portfolio terminal. Type help to explore.",
         },
         {
           cls: "dt-info",
-          text: "  Real commands. Real output. Zero YAML headaches.",
+          text: "  Portfolio simulation. No real infrastructure is connected.",
         },
         { cls: "dt-blank", text: "" },
         {
