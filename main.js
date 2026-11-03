@@ -187,7 +187,7 @@
     {
       label: "Download résumé",
       hint: "PDF",
-      href: "resume.pdf",
+      href: "PalashSrivastava.pdf",
       download: true,
     },
     { label: "Open portfolio terminal", hint: "INTERACTIVE", terminal: true },
