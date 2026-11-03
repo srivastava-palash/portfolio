@@ -1091,26 +1091,14 @@ summary::-webkit-details-marker {
   align-items: center;
   margin-top: 46px;
 }
-.identity-monogram {
-  position: relative;
-  font-family: var(--heading);
-  font-size: 29px;
-  letter-spacing: -0.07em;
-  width: 76px;
-  height: 84px;
-  display: grid;
-  place-items: center;
-  background: #24392a;
+.identity-portrait {
+  flex: 0 0 104px;
+  width: 104px;
+  height: 112px;
+  object-fit: cover;
+  object-position: center 30%;
   border: 1px solid #49654e;
-  border-radius: 4px;
-  color: var(--mint);
-}
-.identity-monogram > span {
-  position: absolute;
-  right: 6px;
-  bottom: 3px;
-  font-size: 15px;
-  color: var(--orange);
+  border-radius: 6px;
 }
 .identity-card > div {
   display: grid;

@@ -165,8 +165,15 @@ async function audit(page, label) {
       page.waitForEvent("download"),
       page.locator(".hero-actions a[download]").click(),
     ]);
+    assert.equal(resumeDownload.suggestedFilename(), "resume.pdf");
+    // Verify payload separately: Chromium can cancel downloads fulfilled by route mocks.
+    const resumeBytes = await page.evaluate(async () =>
+      Array.from(
+        new Uint8Array(await (await fetch("resume.pdf")).arrayBuffer())
+      )
+    );
     assert.deepEqual(
-      fs.readFileSync(await resumeDownload.path()),
+      Buffer.from(resumeBytes),
       fs.readFileSync(path.join(root, "resume.pdf"))
     );
     await page.keyboard.press("Control+k");
