@@ -294,6 +294,7 @@
   /* ── Content area (scrollable) ── */
   .os-content {
     flex: 1;
+    scroll-padding-top: var(--nav-h);
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;

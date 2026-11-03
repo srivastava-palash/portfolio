@@ -54,7 +54,7 @@ const BootManager = (() => {
   ];
 
   let overlay, output;
-  let ready = false;
+  let selecting = false;
 
   function el(id) {
     return document.getElementById(id);
@@ -70,7 +70,8 @@ const BootManager = (() => {
   }
 
   function selectMode(mode) {
-    if (!overlay) return;
+    if (!overlay || selecting) return;
+    selecting = true;
     overlay.classList.add("boot-exit");
     setTimeout(() => {
       overlay.remove();
@@ -88,6 +89,7 @@ const BootManager = (() => {
     // ASCII art (fast stagger)
     ASCII.forEach((line, i) => {
       setTimeout(() => {
+        if (selecting) return;
         const s = document.createElement("span");
         s.className = "boot-line b-ascii";
         s.textContent = line;
@@ -98,6 +100,7 @@ const BootManager = (() => {
     // Subtitle right after ASCII
     setTimeout(
       () => {
+        if (selecting) return;
         addLine(
           "b-subtitle",
           " PALASH SRIVASTAVA  ::  PLATFORM ENGINEER  ::  v2.4.1",
@@ -109,13 +112,13 @@ const BootManager = (() => {
 
     // Boot sequence
     let acc = ASCII.length * 40 + 200;
-    BOOT_LINES.forEach(({ cls, text, d }) => {
+    BOOT_LINES.forEach(({ cls, text, d }, index) => {
       acc += d;
       setTimeout(() => {
+        if (selecting) return;
         addLine(cls, text);
         // After last meaningful line, show prompt + make clickable
-        if (cls === "b-blank" && text === "" && acc > 2000) {
-          ready = true;
+        if (index === BOOT_LINES.length - 1) {
           el("boot-prompt-row").style.display = "flex";
           // Make option lines interactive
           output.querySelectorAll(".b-key1").forEach((n) => {
@@ -311,12 +314,12 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
       let acc = 0;
       steps.forEach(({ cls, text, d }) => {
         acc += d;
-        setTimeout(() => {
+        schedule(() => {
           addLine(cls, text);
           dtBody.scrollTop = dtBody.scrollHeight;
         }, acc);
       });
-      setTimeout(() => {
+      schedule(() => {
         dtInput.disabled = false;
         dtInput.focus();
       }, acc + 300);
@@ -867,6 +870,32 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
   }
 
   /* ── Terminal state ── */
+  const pendingTimers = new Set();
+  let eventsBound = false;
+
+  function schedule(callback, delay) {
+    const timer = setTimeout(() => {
+      pendingTimers.delete(timer);
+      callback();
+    }, delay);
+    pendingTimers.add(timer);
+    return timer;
+  }
+
+  function cancelOutput() {
+    pendingTimers.forEach(clearTimeout);
+    pendingTimers.clear();
+    if (dtInput) dtInput.disabled = false;
+  }
+
+  function close() {
+    cancelOutput();
+    const terminal = document.getElementById("devops-terminal");
+    terminal.classList.add("dt-exit");
+    document.body.style.overflow = "";
+    schedule(() => terminal.classList.add("hidden"), 400);
+  }
+
   let dtBody, dtInput;
   let cmdHistory = [];
   let historyIdx = -1;
@@ -888,7 +917,7 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
 
   function printLines(lines) {
     lines.forEach((l, i) => {
-      setTimeout(() => {
+      schedule(() => {
         addLine(l.cls, l.text);
         dtBody.scrollTop = dtBody.scrollHeight;
       }, i * 22);
@@ -944,7 +973,7 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
           })),
       },
     };
-    if (FDATA[key]) {
+    if (Object.hasOwn(FDATA, key)) {
       printLines(FDATA[key].lines());
       printLines([{ cls: "dt-blank", text: "" }]);
     } else {
@@ -965,18 +994,14 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
     addLine("dt-cmd", PROMPT_STR + cmd);
 
     if (lc === "clear" || lc === "cls") {
+      cancelOutput();
       dtBody.innerHTML = "";
       return;
     }
 
     if (lc === "exit" || lc === "quit" || lc === "gui" || lc === "open gui") {
       addLine("dt-dim", "  Unloading terminal mode...");
-      setTimeout(() => {
-        const dt = document.getElementById("devops-terminal");
-        dt.classList.add("dt-exit");
-        document.body.style.overflow = "";
-        setTimeout(() => dt.classList.add("hidden"), 400);
-      }, 500);
+      schedule(close, 500);
       return;
     }
 
@@ -992,7 +1017,7 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
     if (kubM) {
       const sub = "kubectl " + kubM[1];
       const CMDS = getCMDS();
-      if (CMDS[sub]) {
+      if (Object.hasOwn(CMDS, sub)) {
         CMDS[sub]();
         return;
       }
@@ -1005,7 +1030,7 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
     if (tfM) {
       const sub = "terraform " + tfM[1];
       const CMDS = getCMDS();
-      if (CMDS[sub]) {
+      if (Object.hasOwn(CMDS, sub)) {
         CMDS[sub]();
         return;
       }
@@ -1032,7 +1057,7 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
 
     // Standard commands
     const CMDS = getCMDS();
-    if (CMDS[lc]) {
+    if (Object.hasOwn(CMDS, lc)) {
       CMDS[lc]();
       return;
     }
@@ -1089,11 +1114,14 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
     dtInput = document.getElementById("dt-input");
     if (!terminal) return;
 
-    terminal.classList.remove("hidden");
+    cancelOutput();
+    terminal.classList.remove("hidden", "dt-exit");
+    dtInput.value = "";
+    historyIdx = -1;
     document.body.style.overflow = "hidden";
     dtBody.innerHTML = "";
 
-    setTimeout(() => {
+    schedule(() => {
       printLines([
         {
           cls: "dt-bright",
@@ -1127,8 +1155,11 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
         },
         { cls: "dt-blank", text: "" },
       ]);
-      setTimeout(() => dtInput.focus(), 400);
+      schedule(() => dtInput.focus(), 400);
     }, 200);
+
+    if (eventsBound) return;
+    eventsBound = true;
 
     // Input events
     dtInput.addEventListener("keydown", (e) => {
@@ -1198,11 +1229,7 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
     });
 
     // Exit button
-    document.getElementById("dt-exit")?.addEventListener("click", () => {
-      terminal.classList.add("dt-exit");
-      document.body.style.overflow = "";
-      setTimeout(() => terminal.classList.add("hidden"), 400);
-    });
+    document.getElementById("dt-exit")?.addEventListener("click", close);
   }
 
   return { open };

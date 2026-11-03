@@ -1,11 +1,10 @@
 /* ═══════════════════════════════════════════════════════════════
    DESKTOP OS — Interactive behaviors
-   Only runs on screens ≥ 960px
+   Controls are displayed on screens ≥ 960px
    ═══════════════════════════════════════════════════════════════ */
 
 (function initDesktopOS() {
-  // Only activate on desktop-sized screens
-  if (window.innerWidth < 960) return;
+  // Initialize even on mobile so controls work after resizing to desktop.
 
   // ─── LIVE CLOCK in menu bar ───
   const clockEl = document.getElementById("os-clock");
@@ -112,27 +111,21 @@
       });
     });
 
-    const sectionIds = Array.from(tabs).map((t) =>
-      t.getAttribute("data-section"),
-    );
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            tabs.forEach((t) => t.classList.remove("active"));
-            const match = Array.from(tabs).find(
-              (t) => t.getAttribute("data-section") === entry.target.id,
-            );
-            if (match) match.classList.add("active");
-          }
-        });
-      },
-      { threshold: 0.3 },
-    );
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+    const content = document.querySelector(".os-content");
+    function updateActiveTab() {
+      if (!window.matchMedia("(min-width: 960px)").matches || !content) return;
+      const top = content.getBoundingClientRect().top;
+      let active = tabs[0];
+      tabs.forEach((tab) => {
+        const section = document.getElementById(tab.dataset.section);
+        if (section && section.getBoundingClientRect().top - top <= 120) {
+          active = tab;
+        }
+      });
+      tabs.forEach((tab) => tab.classList.toggle("active", tab === active));
+    }
+    content?.addEventListener("scroll", updateActiveTab, { passive: true });
+    window.addEventListener("resize", updateActiveTab);
+    updateActiveTab();
   }
 })();

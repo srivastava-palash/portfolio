@@ -38,19 +38,25 @@ const navbar = document.getElementById("navbar");
 const navLinks = document.querySelectorAll(".nav-links a");
 const sections = document.querySelectorAll("section[id]");
 
+const scrollContent = document.querySelector(".os-content");
+const desktopLayout = window.matchMedia("(min-width: 960px)");
+
 function onScroll() {
+  const desktop = desktopLayout.matches && scrollContent;
+  const scrollTop = desktop ? scrollContent.scrollTop : window.scrollY;
+  const contentTop = desktop ? scrollContent.getBoundingClientRect().top : 0;
   // sticky shadow
-  navbar.classList.toggle("scrolled", window.scrollY > 20);
+  navbar.classList.toggle("scrolled", scrollTop > 20);
 
   // hide scroll hint
   const hint = document.getElementById("scroll-hint");
-  if (hint) hint.style.opacity = window.scrollY > 80 ? "0" : "1";
+  if (hint) hint.style.opacity = scrollTop > 80 ? "0" : "1";
 
   // active nav link
   let current = "";
   sections.forEach((sec) => {
-    const top = sec.offsetTop - 120;
-    if (window.scrollY >= top) current = sec.id;
+    const top = sec.getBoundingClientRect().top - contentTop;
+    if (top <= 120) current = sec.id;
   });
   navLinks.forEach((a) => {
     const href = a.getAttribute("href").replace("#", "");
@@ -59,6 +65,8 @@ function onScroll() {
 }
 
 window.addEventListener("scroll", onScroll, { passive: true });
+scrollContent?.addEventListener("scroll", onScroll, { passive: true });
+window.addEventListener("resize", onScroll);
 onScroll();
 
 // ─── MOBILE MENU ───
@@ -72,6 +80,7 @@ function createMobileMenu() {
 
   const links = [
     { href: "#about", label: "About" },
+    { href: "#projects", label: "Projects" },
     { href: "#experience", label: "Experience" },
     { href: "#skills", label: "Skills" },
     { href: "#education", label: "Education" },
@@ -99,6 +108,7 @@ function createMobileMenu() {
 function openMobileMenu() {
   if (!mobileMenu) createMobileMenu();
   mobileMenu.classList.add("open");
+  hamburger.setAttribute("aria-expanded", "true");
   document.body.style.overflow = "hidden";
   // animate hamburger to X
   const spans = hamburger.querySelectorAll("span");
@@ -110,6 +120,7 @@ function openMobileMenu() {
 function closeMobileMenu() {
   if (!mobileMenu) return;
   mobileMenu.classList.remove("open");
+  hamburger.setAttribute("aria-expanded", "false");
   document.body.style.overflow = "";
   const spans = hamburger.querySelectorAll("span");
   spans[0].style.transform = "";
@@ -125,29 +136,19 @@ hamburger.addEventListener("click", () => {
   }
 });
 
-// ─── 3D TILT on About Card ───
-const aboutCard = document.getElementById("about-card");
-if (aboutCard) {
-  aboutCard.addEventListener("mousemove", (e) => {
-    const rect = aboutCard.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -20;
-    aboutCard.style.transform = `rotateY(${x}deg) rotateX(${y}deg) scale(1.02)`;
-  });
-  aboutCard.addEventListener("mouseleave", () => {
-    aboutCard.style.transform = "";
-  });
-}
+// Delegate so dynamically created mobile links receive the same navigation.
+document.addEventListener("click", (e) => {
+  const anchor = e.target.closest('a[href^="#"]');
+  if (!anchor) return;
+  const target = document.getElementById(anchor.getAttribute("href").slice(1));
+  if (target) {
+    e.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+});
 
-// ─── SMOOTH SCROLL for all internal links ───
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", (e) => {
-    const target = document.querySelector(anchor.getAttribute("href"));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  });
+desktopLayout.addEventListener("change", () => {
+  if (desktopLayout.matches) closeMobileMenu();
 });
 
 // ─── STAT NUMBER COUNTER ANIMATION ───
@@ -612,11 +613,18 @@ document.addEventListener("keydown", (e) => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    if (btn.disabled) return;
+    if (!form.reportValidity()) return;
+
     // Basic client-side validation
     const name = form.querySelector("#cf-name").value.trim();
     const email = form.querySelector("#cf-email").value.trim();
     const message = form.querySelector("#cf-message").value.trim();
-    if (!name || !email || !message) return;
+    if (!name || !email || !message) {
+      error.style.display = "flex";
+      success.style.display = "none";
+      return;
+    }
 
     // Show loading state
     btn.classList.add("loading");
@@ -632,7 +640,7 @@ document.addEventListener("keydown", (e) => {
       });
       const json = await res.json();
 
-      if (json.success) {
+      if (res.ok && json.success) {
         success.style.display = "flex";
         form.reset();
       } else {
@@ -670,126 +678,3 @@ console.log(
   const hours = Math.floor((uptimeSec % 86400) / 3600);
   el.textContent = `${days}d ${hours}h (99.98% SLO)`;
 })();
-
-// ─── NAV: add Projects link ───
-// (projects section exists, make sure 'Projects' appears in nav if nav links exist)
-
-// ══════════════════════════════════════════════════════════════
-//  MOUSE SPOTLIGHT  — Antigravity.google style
-// ══════════════════════════════════════════════════════════════
-(function initSpotlight() {
-  const spotlight = document.getElementById("mouse-spotlight");
-  if (!spotlight) return;
-
-  let tx = window.innerWidth / 2;
-  let ty = window.innerHeight / 2;
-  let cx = tx,
-    cy = ty;
-  let rafId;
-
-  // Activate once the user moves the mouse
-  document.addEventListener(
-    "mousemove",
-    (e) => {
-      tx = e.clientX;
-      ty = e.clientY;
-      spotlight.classList.add("active");
-      if (!rafId) rafId = requestAnimationFrame(animate);
-    },
-    { passive: true },
-  );
-
-  // Smooth lerp so the glow has a subtle lag — feels weightier
-  function animate() {
-    cx += (tx - cx) * 0.1;
-    cy += (ty - cy) * 0.1;
-
-    // Use CSS custom properties — no repainting the full element, just re-evaluating gradient
-    spotlight.style.setProperty("--mx", cx.toFixed(1) + "px");
-    spotlight.style.setProperty("--my", cy.toFixed(1) + "px");
-
-    const dist = Math.hypot(tx - cx, ty - cy);
-    rafId = dist > 0.3 ? requestAnimationFrame(animate) : null;
-  }
-})();
-
-// ══════════════════════════════════════════════════════════════
-//  3D CARD TILT + SPECULAR SHEEN
-// ══════════════════════════════════════════════════════════════
-(function initCardTilt() {
-  // Which cards get the tilt treatment
-  const CARD_SELECTORS =
-    ".project-card, .timeline-card, .skill-category, .edu-card, .about-card";
-  const MAX_TILT = 10; // degrees
-  const PERSPECTIVE = 800; // px
-
-  // Inject tilt-card class + sheen div into all matching cards
-  document.querySelectorAll(CARD_SELECTORS).forEach((card) => {
-    card.classList.add("tilt-card");
-    // Ensure position:relative for sheen overlay
-    if (getComputedStyle(card).position === "static") {
-      card.style.position = "relative";
-    }
-    const sheen = document.createElement("div");
-    sheen.className = "tilt-sheen";
-    card.appendChild(sheen);
-
-    // Wrap in perspective container if not already
-    const parent = card.parentElement;
-    if (!parent.style.perspective) {
-      parent.style.perspective = PERSPECTIVE + "px";
-    }
-
-    let animFrame;
-    let targetRx = 0,
-      targetRy = 0;
-    let currentRx = 0,
-      currentRy = 0;
-    let targetCx = 50,
-      targetCy = 50;
-
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const relX = (e.clientX - rect.left) / rect.width; // 0..1
-      const relY = (e.clientY - rect.top) / rect.height; // 0..1
-
-      targetRy = (relX - 0.5) * 2 * MAX_TILT; // left/right tilt
-      targetRx = -(relY - 0.5) * 2 * MAX_TILT; // up/down tilt
-      targetCx = (relX * 100).toFixed(1);
-      targetCy = (relY * 100).toFixed(1);
-
-      // Update sheen position immediately (fast)
-      sheen.style.setProperty("--cx", targetCx + "%");
-      sheen.style.setProperty("--cy", targetCy + "%");
-
-      if (!animFrame) animFrame = requestAnimationFrame(lerpTilt);
-    });
-
-    card.addEventListener("mouseleave", () => {
-      targetRx = 0;
-      targetRy = 0;
-      if (!animFrame) animFrame = requestAnimationFrame(lerpTilt);
-    });
-
-    function lerpTilt() {
-      currentRx += (targetRx - currentRx) * 0.18;
-      currentRy += (targetRy - currentRy) * 0.18;
-
-      card.style.transform = `rotateX(${currentRx.toFixed(2)}deg) rotateY(${currentRy.toFixed(2)}deg)`;
-
-      const distR =
-        Math.abs(targetRx - currentRx) + Math.abs(targetRy - currentRy);
-      animFrame = distR > 0.05 ? requestAnimationFrame(lerpTilt) : null;
-      if (!animFrame) card.style.transform = "rotateX(0deg) rotateY(0deg)";
-    }
-  });
-})();
-
-console.log(
-  "%c\uD83D\uDC4B Hey there! Palash built this portfolio.",
-  "color: #63b3ed; font-size: 14px; font-weight: bold;",
-);
-console.log(
-  "%cTake a look at the source \u2014 clean code matters :)",
-  "color: #9f7aea; font-size: 12px;",
-);
