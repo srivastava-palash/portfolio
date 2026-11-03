@@ -977,7 +977,7 @@ body:has(dialog[open]) {
   max-width: 440px;
 }
 .case-body > .case-stack {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.01em;
   margin-top: 24px;
   color: #546b5b;
@@ -987,16 +987,58 @@ body:has(dialog[open]) {
   border-top: 1px solid #cbd6c7;
 }
 .case-body summary {
-  font-size: 12px;
-  padding: 16px 0 0;
+  min-height: 48px;
+  margin: 6px -10px -6px;
+  padding: 12px 10px;
+  border-radius: 4px;
+  font-size: 14px;
   color: #244c34;
+  transition: background-color 180ms ease;
+}
+.case-body summary:hover,
+.case-body summary:focus-visible {
+  background-color: #dfe8d8;
+}
+.notes-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  font-size: 12px;
+}
+.notes-icon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #a9bda7;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 180ms ease, background-color 180ms ease,
+    color 180ms ease;
+}
+.case-body summary:hover .notes-icon,
+.case-body summary:focus-visible .notes-icon {
+  background-color: #244c34;
+  color: #f1f4ed;
+}
+.notes-collapse,
+.case-body details[open] .notes-expand {
+  display: none;
+}
+.case-body details[open] .notes-collapse {
+  display: inline;
+}
+.case-body details[open] .notes-icon {
+  transform: rotate(45deg);
 }
 .case-body dl {
   margin: 20px 0 10px;
 }
 .case-body dt {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   margin-top: 18px;
   color: #284a33;
@@ -1004,7 +1046,7 @@ body:has(dialog[open]) {
   letter-spacing: 0.06em;
 }
 .case-body dd {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.8;
   margin: 5px 0 0;
   color: #506255;
@@ -1019,9 +1061,6 @@ summary {
 }
 summary::-webkit-details-marker {
   display: none;
-}
-details[open] > summary > span {
-  transform: rotate(45deg);
 }
 .work-note {
   display: flex;
@@ -1182,7 +1221,7 @@ details[open] > summary > span {
   border-top: 0;
 }
 .experience-date {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
   padding-top: 6px;
   white-space: nowrap;
@@ -1197,30 +1236,20 @@ details[open] > summary > span {
 }
 .experience-role {
   color: var(--ink);
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 8px;
 }
 .experience-row > div > p:not(.experience-role) {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--muted);
   line-height: 1.8;
   margin-top: 16px;
 }
-.experience-row summary {
-  color: var(--mint);
-  font-size: 11px;
-  margin-top: 15px;
-}
-.experience-row details p {
+.experience-row > div > p.experience-tags {
+  font-size: 12px;
   color: var(--muted);
-  font-size: 13px;
+  letter-spacing: 0;
   line-height: 1.8;
-  margin-top: 14px;
-}
-.experience-row > div > .experience-tags {
-  font-size: 8px !important;
-  color: var(--dim) !important;
-  letter-spacing: 0.02em;
 }
 /* Original marks, no icon fonts or runtime CDN requests. */
 .tech-logo-grid {
@@ -2449,7 +2478,7 @@ details[open] > summary > span {
     font-size: 14px;
   }
   .case-body > .case-stack {
-    font-size: 9px;
+    font-size: 11px;
   }
   .work-note {
     font-size: 7px;
@@ -2477,24 +2506,8 @@ details[open] > summary > span {
     gap: 13px;
     padding-block: 27px;
   }
-  .experience-date {
-    font-size: 9px;
-  }
   .experience-row h3 {
     font-size: 25px;
-  }
-  .experience-role {
-    font-size: 12px;
-  }
-  .experience-row > div > p:not(.experience-role) {
-    font-size: 14px;
-  }
-  .experience-row summary {
-    font-size: 12px;
-  }
-  .experience-row > div > .experience-tags {
-    font-size: 8px !important;
-    line-height: 1.9;
   }
   .tech-logo-grid {
     gap: 30px 16px;

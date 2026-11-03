@@ -136,15 +136,39 @@ async function audit(page, label) {
     await jump(page, "#projects");
     await page.screenshot({ path: path.join(output, "desktop-work.png") });
     for (const card of await page.locator(".case-study").all()) {
-      await card.locator("summary").click();
+      const summary = card.locator("summary");
+      await summary.hover();
+      assert.equal(
+        await summary.evaluate((el) => getComputedStyle(el).backgroundColor),
+        "rgb(223, 232, 216)"
+      );
+      assert(await summary.locator(".notes-expand").isVisible());
+      await summary.click();
       assert(await card.locator("dd").first().isVisible());
-      await card.locator("summary").click();
+      assert(await summary.locator(".notes-collapse").isVisible());
+      await summary.press("Space");
+      assert.equal(
+        await card.locator("details").evaluate((el) => el.open),
+        false
+      );
     }
     for (const role of await page.locator(".experience-row").all()) {
-      await role.locator("summary").click();
-      assert(await role.locator("details p").isVisible());
-      await role.locator("summary").click();
+      assert.equal(await role.locator("details").count(), 0);
+      assert.equal(await role.locator(":scope > div > p").count(), 4);
+      assert(await role.locator(":scope > div > p").nth(2).isVisible());
     }
+    await jump(page, "#experience");
+    await page.screenshot({
+      path: path.join(output, "desktop-experience.png"),
+    });
+    const [resumeDownload] = await Promise.all([
+      page.waitForEvent("download"),
+      page.locator(".hero-actions a[download]").click(),
+    ]);
+    assert.deepEqual(
+      fs.readFileSync(await resumeDownload.path()),
+      fs.readFileSync(path.join(root, "resume.pdf"))
+    );
     await page.keyboard.press("Control+k");
     assert(await page.locator("#command-dialog").isVisible());
     await page.locator("#command-search").fill("toolkit");
@@ -274,7 +298,20 @@ async function audit(page, label) {
             .map((el) => el.className)
         );
       assert.deepEqual(overflow, [], "Component overflow at " + width);
+      const smallType = await page
+        .locator(".experience-date, .experience-tags")
+        .evaluateAll((elements) =>
+          elements
+            .filter((el) => parseFloat(getComputedStyle(el).fontSize) < 12)
+            .map((el) => el.className)
+        );
+      assert.deepEqual(smallType, [], "Experience text below 12px at " + width);
       if (width === 390) {
+        await jump(page, "#experience");
+        await page.screenshot({
+          path: path.join(output, "mobile-experience.png"),
+        });
+        await jump(page, "#skills");
         await page.screenshot({
           path: path.join(output, "mobile-toolkit.png"),
         });
