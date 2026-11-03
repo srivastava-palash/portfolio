@@ -861,69 +861,73 @@ img {
     0 20px 50px rgba(0, 0, 0, 0.3),
     0 0 30px rgba(99, 179, 237, 0.05);
 }
-/* ─── TECH LOGO GRID ─── */
+/* ─── TECHNOLOGY TOOLKIT ─── */
 .tech-logo-grid {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 12px;
-  margin-bottom: 56px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin: 40px 0 56px;
+}
+.toolkit-group-title {
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.toolkit-list {
+  display: grid;
+  gap: 10px;
+  list-style: none;
 }
 .tech-logo-card {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 18px 10px 14px;
-  background: var(--bg-card);
+  gap: 12px;
+  min-width: 0;
+  min-height: 84px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.025);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  cursor: default;
-  transition: all var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-.tech-logo-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--gradient-glow);
-  opacity: 0;
-  transition: opacity var(--transition);
+  border-radius: 12px;
+  transition: border-color var(--transition), background var(--transition);
 }
 .tech-logo-card:hover {
-  border-color: var(--border-accent);
-  background: var(--bg-card-hover);
-  transform: translateY(-5px);
-  box-shadow:
-    0 14px 40px rgba(0, 0, 0, 0.35),
-    0 0 20px rgba(99, 179, 237, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.045);
 }
-.tech-logo-card:hover::before {
-  opacity: 1;
+.tech-logo-surface {
+  display: grid;
+  place-items: center;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  padding: 6px;
+  border-radius: 8px;
+  background: #fff;
 }
-.tech-logo-card svg {
-  width: 36px;
-  height: 36px;
-  position: relative;
-  z-index: 1;
-  transition: transform var(--transition);
+.tech-logo-surface img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
-.tech-logo-card:hover svg {
-  transform: scale(1.12);
+.tech-logo-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
 }
-.tech-logo-card span {
-  font-size: 0.68rem;
+.tech-logo-name {
+  color: var(--text-primary);
+  font-size: 0.875rem;
   font-weight: 600;
-  color: var(--text-muted);
-  text-align: center;
-  letter-spacing: 0.02em;
-  position: relative;
-  z-index: 1;
-  transition: color var(--transition);
-  white-space: nowrap;
+  line-height: 1.35;
 }
-.tech-logo-card:hover span {
+.tech-logo-detail {
   color: var(--text-secondary);
+  font-size: 0.6875rem;
+  line-height: 1.5;
 }
 
 /* ─── SKILL CATEGORY ICON (SVG) ─── */
@@ -1351,7 +1355,7 @@ img {
     gap: 16px;
   }
   .tech-logo-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 @media (max-width: 600px) {
@@ -1380,15 +1384,27 @@ img {
     grid-template-columns: 1fr;
   }
   .tech-logo-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .toolkit-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .tech-logo-card {
-    padding: 14px 6px 10px;
+    gap: 10px;
+    padding: 10px;
   }
-  .tech-logo-card svg {
-    width: 28px;
-    height: 28px;
+  .tech-logo-surface {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+  }
+  .tech-logo-name {
+    font-size: 0.8125rem;
+  }
+  .tech-logo-detail {
+    font-size: 0.6875rem;
   }
 }
 
@@ -2574,5 +2590,11 @@ img {
 @media (min-width: 600px) and (max-width: 900px) {
   .projects-grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 360px) {
+  .toolkit-list {
+    grid-template-columns: 1fr;
   }
 }

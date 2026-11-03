@@ -1,0 +1,78 @@
+{
+  "notice": "Logos belong to their respective owners and identify technologies used. Devicon assets are distributed under MIT; see devicon-LICENSE.",
+  "assets": {
+    "amazonwebservices.svg": {
+      "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original.svg",
+      "collection": "Devicon original variant",
+      "retrieved": "2026-11-03"
+    },
+    "googlecloud.svg": {
+      "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/googlecloud/googlecloud-original.svg",
+      "collection": "Devicon original variant",
+      "retrieved": "2026-11-03"
+    },
+    "gke.svg": {
+      "source": "https://raw.githubusercontent.com/cncf/landscape/master/hosted_logos/google-kubernetes-engine.svg",
+      "collection": "CNCF Cloud Native Landscape",
+      "retrieved": "2026-11-03",
+      "note": "Standalone GKE symbol extracted from the landscape lockup; original geometry and colors preserved."
+    },
+    "kubernetes.svg": {
+      "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/kubernetes/kubernetes-original.svg",
+      "collection": "Devicon original variant",
+      "retrieved": "2026-11-03"
+    },
+    "docker.svg": {
+      "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg",
+      "collection": "Devicon original variant",
+      "retrieved": "2026-11-03"
+    },
+    "terraform.svg": {
+      "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/terraform/terraform-original.svg",
+      "collection": "Devicon original variant",
+      "retrieved": "2026-11-03"
+    },
+    "githubactions.svg": {
+      "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/githubactions/githubactions-original.svg",
+      "collection": "Devicon original variant",
+      "retrieved": "2026-11-03"
+    },
+    "jenkins.svg": {
+      "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/jenkins/jenkins-original.svg",
+      "collection": "Devicon original variant",
+      "retrieved": "2026-11-03"
+    },
+    "spinnaker.svg": {
+      "source": "https://raw.githubusercontent.com/spinnaker/spinnaker.io/master/static/images/spinnaker-logo-inline.svg",
+      "collection": "Official Spinnaker website",
+      "retrieved": "2026-11-03"
+    },
+    "python.svg": {
+      "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg",
+      "collection": "Devicon original variant",
+      "retrieved": "2026-11-03"
+    },
+    "datadog.svg": {
+      "source": "https://corp.dd-static.net/zip/Logo_Assets.zip",
+      "collection": "Datadog official press kit",
+      "retrieved": "2026-11-03",
+      "archive_path": "Logo Assets/DD Vector Logos/Icon/SVG/dd_icon_rgb.svg"
+    },
+    "prometheus.svg": {
+      "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/prometheus/prometheus-original.svg",
+      "collection": "Devicon original variant",
+      "retrieved": "2026-11-03"
+    },
+    "grafana.svg": {
+      "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/grafana/grafana-original.svg",
+      "collection": "Devicon original variant",
+      "retrieved": "2026-11-03"
+    },
+    "opensearch.svg": {
+      "source": "https://opensearch.org/wp-content/uploads/2024/08/opensearch_logo_default.svg",
+      "collection": "Official OpenSearch website",
+      "retrieved": "2026-11-03",
+      "note": "Standalone symbol extracted from the first three paths of the official lockup; original geometry and colors preserved."
+    }
+  }
+}
