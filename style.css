@@ -3100,3 +3100,42 @@ summary::-webkit-details-marker {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ============================================================
+   FINOPS & SECOPS CASE STUDY (04) — dual meter
+   ============================================================ */
+.visual-finsec {
+  background: #ecdde0;
+  color: #6d3f4c;
+}
+.visual-finsec .case-visual-top,
+.visual-finsec .visual-note {
+  color: #7d5260;
+}
+.visual-finsec .case-result > strong {
+  font-size: 66px;
+}
+.visual-finsec .case-result > span {
+  max-width: 108px;
+}
+.vendor-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 22px;
+  width: 94%;
+}
+.vendor-grid > span {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.02em;
+  padding: 6px 10px;
+  border: 1px solid #c3a3ad;
+  border-radius: 3px;
+  background: #f3e8ea;
+}
+.vendor-grid > span:first-child {
+  background: #7d4659;
+  border-color: #7d4659;
+  color: #f6edef;
+}

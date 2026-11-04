@@ -177,8 +177,8 @@ I'm a hands-on reliability and platform leader with 9+ years building
 and operating scalable, production-grade infrastructure.
 
 CURRENT   : Head of Platform @ Constrafor, New York
-FOCUS     : Cloud architecture, CI/CD, SOC 2, developer experience
-LOOKING   : Senior Platform / DevOps / SRE Leadership roles
+FOCUS     : Cloud architecture, CI/CD, SOC 2, cloud cost, developer experience
+LOOKING   : Platform / DevSecOps / SRE / FinOps leadership roles
 
 I thrive at the intersection of infrastructure, automation, and developer
 productivity. From re-architecting cloud systems to leading SOC 2 readiness,
@@ -221,7 +221,7 @@ LINKEDIN="linkedin.com/in/srivastavapalash"
 GITHUB="github.com/srivastava-palash"
 LOCATION="New York, USA"
 OPEN_TO_OPPORTUNITIES=true
-PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
+PREFERRED_ROLES="Head of Platform, DevSecOps Manager, SRE Lead, FinOps Lead"`,
 
     "experience.log": `[2024-06 → present] Constrafor :: Head of Platform / DevOps Manager
   > SOC 2 Type II — security hardening, policies, remediation
@@ -1133,7 +1133,7 @@ PREFERRED_ROLES="Head of Platform, DevOps Manager, SRE Lead"`,
         },
         {
           cls: "dt-bright",
-          text: "│   Platform Engineer · DevOps · SRE                        │",
+          text: "│   Platform · DevSecOps · SRE · FinOps                     │",
         },
         {
           cls: "dt-bright",
