@@ -176,6 +176,7 @@
   const actions = [
     { label: "Selected work", hint: "CASE STUDIES", href: "#projects" },
     { label: "About Palash", hint: "THE ENGINEER", href: "#about" },
+    { label: "How I lead", hint: "LEADERSHIP", href: "#leadership" },
     { label: "Experience", hint: "CAREER", href: "#experience" },
     { label: "Technology toolkit", hint: "SKILLS", href: "#skills" },
     {

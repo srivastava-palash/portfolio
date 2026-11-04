@@ -48,8 +48,8 @@
         >
         <nav aria-label="Main navigation" id="site-navigation">
           <a href="#projects">Work</a><a href="#about">About</a
-          ><a href="#experience">Experience</a><a href="#skills">Toolkit</a
-          ><a href="#contact">Contact</a>
+          ><a href="#leadership">Leadership</a><a href="#experience">Experience</a
+          ><a href="#skills">Toolkit</a><a href="#contact">Contact</a>
         </nav>
         <div class="nav-actions">
           <button
@@ -105,9 +105,10 @@
                 >Get the résumé <span aria-hidden="true">↓</span></a
               >
             </div>
+            <!-- ASSUMPTION: engineer count — correct "~40 ENGINEERS" below -->
             <div class="hero-footnote mono">
               <span class="tiny-cross" aria-hidden="true">+</span> 9+ YEARS /
-              CLOUD INFRASTRUCTURE / DEVELOPER EXPERIENCE
+              PLATFORM FOR ~40 ENGINEERS / 3 PRODUCT TEAMS
             </div>
           </div>
           <div class="system-panel" id="system-panel">
@@ -338,10 +339,74 @@
             </p>
           </div>
           <div class="case-grid">
+            <article class="case-study" id="proj-platform" data-reveal>
+              <div class="case-visual visual-platform">
+                <div class="case-visual-top mono">
+                  <span>01 / PLATFORM ENGINEERING</span><span>Constrafor</span>
+                </div>
+                <div class="case-result">
+                  <strong>40+</strong><span>shared workflows in production use</span>
+                </div>
+                <div class="platform-fan" aria-hidden="true">
+                  <div class="fan-consumers">
+                    <span>backend</span><span>frontend</span><span>cru-copilot</span>
+                  </div>
+                  <div class="fan-join"></div>
+                  <div class="fan-core">the paved road</div>
+                </div>
+                <div class="visual-note mono">write it once. everyone ships on it.</div>
+              </div>
+              <div class="case-body">
+                <h3>A platform teams build on.</h3>
+                <p>
+                  Every service was solving delivery, secrets, and
+                  infrastructure the same way — separately. So I made it one
+                  thing, and gave it an interface.
+                </p>
+                <p class="case-stack mono">
+                  GitHub Actions · Terraform · Reusable workflows
+                </p>
+                <details>
+                  <summary>
+                    Engineering notes
+                    <span class="notes-action" aria-hidden="true">
+                      <span class="notes-expand">Expand</span>
+                      <span class="notes-collapse">Collapse</span>
+                      <span class="notes-icon">+</span>
+                    </span>
+                  </summary>
+                  <dl>
+                    <dt>Context</dt>
+                    <dd>
+                      Each repository carried its own copy of release logic,
+                      Terraform runs, scanning, and secret handling. The same
+                      bug had to be fixed in several places, and no two
+                      services deployed quite the same way.
+                    </dd>
+                    <dt>Approach</dt>
+                    <dd>
+                      Built a versioned library of reusable workflows in a
+                      single platform repository: release prepare, approve, and
+                      cleanup; Terraform plan-on-pull-request and apply;
+                      security scanning; base-image refresh; and secret
+                      management against AWS Parameter Store and 1Password.
+                      Services call them by reference rather than copying them.
+                    </dd>
+                    <dt>Outcome</dt>
+                    <dd>
+                      Three product repositories now ship through the same
+                      paved road, and a dozen engineers contribute back to it.
+                      Improving delivery for everyone became a single pull
+                      request instead of a migration.
+                    </dd>
+                  </dl>
+                </details>
+              </div>
+            </article>
             <article class="case-study" id="proj-cicd" data-reveal>
               <div class="case-visual visual-cicd">
                 <div class="case-visual-top mono">
-                  <span>01 / DELIVERY ENGINEERING</span><span>Constrafor</span>
+                  <span>02 / DELIVERY ENGINEERING</span><span>Constrafor</span>
                 </div>
                 <div class="case-result">
                   <strong>70%</strong><span>less deployment time</span>
@@ -395,7 +460,7 @@
             <article class="case-study" id="proj-cloud" data-reveal>
               <div class="case-visual visual-cloud">
                 <div class="case-visual-top mono">
-                  <span>02 / CLOUD ARCHITECTURE</span><span>Constrafor</span>
+                  <span>03 / CLOUD ARCHITECTURE</span><span>Constrafor</span>
                 </div>
                 <div class="case-result">
                   <strong>50%</strong><span>lower AWS costs</span>
@@ -454,7 +519,7 @@
             <article class="case-study" id="proj-security" data-reveal>
               <div class="case-visual visual-security">
                 <div class="case-visual-top mono">
-                  <span>03 / SECURITY & COMPLIANCE</span><span>Constrafor</span>
+                  <span>04 / GOVERNANCE AS CODE</span><span>Constrafor</span>
                 </div>
                 <div class="case-result">
                   <strong>SOC 2</strong><span>Type II readiness</span>
@@ -463,19 +528,19 @@
                   <div class="orbit-ring"></div>
                   <div class="orbit-ring second"></div>
                   <span class="security-core">SOC 2</span
-                  ><span class="orbit-label label-a mono">ACCESS</span
-                  ><span class="orbit-label label-b mono">AUDIT</span
-                  ><span class="orbit-label label-c mono">POLICY</span>
+                  ><span class="orbit-label label-a mono">ORG</span
+                  ><span class="orbit-label label-b mono">ACCESS</span
+                  ><span class="orbit-label label-c mono">AUDIT</span>
                 </div>
               </div>
               <div class="case-body">
-                <h3>Trust, built into the platform.</h3>
+                <h3>Access, written down.</h3>
                 <p>
-                  Security guardrails that support the team’s day-to-day
-                  engineering work.
+                  An audit asks who can reach what, and why. That is a much
+                  easier question when the answer is a file.
                 </p>
                 <p class="case-stack mono">
-                  AWS IAM · VPC · CloudTrail · Security Hub
+                  Terraform · AWS Organizations · GitHub · IAM
                 </p>
                 <details>
                   <summary>
@@ -489,19 +554,87 @@
                   <dl>
                     <dt>Context</dt>
                     <dd>
-                      Scaling the platform also meant establishing stronger
-                      security and audit readiness.
+                      SOC 2 Type II needs access and change control that can be
+                      evidenced, not described. Permissions granted by hand in
+                      a console leave nothing an auditor can follow.
                     </dd>
                     <dt>Approach</dt>
                     <dd>
-                      Reworked IAM policies, hardened infrastructure, segmented
-                      networks, and established compliance checks and incident
-                      response runbooks.
+                      Defined the AWS organization, landing zone, and user
+                      management in Terraform. Did the same for the GitHub
+                      organization — teams, per-repository access, and branch
+                      protection as reusable modules — so adding a repository
+                      or changing who can reach it is a reviewed change.
                     </dd>
                     <dt>Outcome</dt>
                     <dd>
-                      Led the infrastructure and security work supporting SOC 2
-                      Type II readiness.
+                      Access changes became pull requests with reviewers and
+                      history. Led the infrastructure and security work
+                      supporting SOC 2 Type II readiness, with an auditable
+                      trail behind it.
+                    </dd>
+                  </dl>
+                </details>
+              </div>
+            </article>
+            <article class="case-study" id="proj-ai" data-reveal>
+              <div class="case-visual visual-ai">
+                <div class="case-visual-top mono">
+                  <span>05 / AI PLATFORM</span><span>Constrafor</span>
+                </div>
+                <div class="case-result">
+                  <strong>1-click</strong><span>rollback to any release</span>
+                </div>
+                <div class="release-track" aria-hidden="true">
+                  <span class="rt-step">build</span
+                  ><i></i><span class="rt-step">tag</span
+                  ><i></i><span class="rt-step rt-gate">approve</span
+                  ><i></i><span class="rt-step rt-live">prod</span>
+                </div>
+                <div class="visual-note mono">
+                  one human gate, exactly where it matters
+                </div>
+              </div>
+              <div class="case-body">
+                <h3>An AI pipeline, shipped like infrastructure.</h3>
+                <p>
+                  A document-processing agent is still production software. It
+                  gets the same release discipline as everything else.
+                </p>
+                <p class="case-stack mono">
+                  Step Functions · Lambda · Terraform · Datadog
+                </p>
+                <details>
+                  <summary>
+                    Engineering notes
+                    <span class="notes-action" aria-hidden="true">
+                      <span class="notes-expand">Expand</span>
+                      <span class="notes-collapse">Collapse</span>
+                      <span class="notes-icon">+</span>
+                    </span>
+                  </summary>
+                  <dl>
+                    <dt>Context</dt>
+                    <dd>
+                      The product team built an AI pipeline that classifies and
+                      extracts data from construction documents. I owned how it
+                      reached production and how it behaved once it got there.
+                    </dd>
+                    <dt>Approach</dt>
+                    <dd>
+                      Containerised functions orchestrated by Step Functions,
+                      with immutable image tags — commit SHA for development,
+                      semantic version for production. A human approval gate in
+                      front of production, automatic tag cleanup when a release
+                      is denied, and test coverage published as a tracked
+                      metric. A separate Terraform stack runs the LLM gateway
+                      the products call, across VPC, ECS, RDS, Redis, and ALB.
+                    </dd>
+                    <dt>Outcome</dt>
+                    <dd>
+                      Any release can be rolled back to a previous version on
+                      demand. Production retains a year of execution logs;
+                      development keeps two weeks.
                     </dd>
                   </dl>
                 </details>
@@ -510,7 +643,7 @@
             <article class="case-study" id="proj-signals" data-reveal>
               <div class="case-visual visual-signals">
                 <div class="case-visual-top mono">
-                  <span>04 / RELIABILITY ENGINEERING</span
+                  <span>06 / RELIABILITY ENGINEERING</span
                   ><span>TS Imagine</span>
                 </div>
                 <div class="case-result">
@@ -649,11 +782,68 @@
           </div>
         </div>
       </section>
+      <section id="leadership" class="leadership-section section-shell section-pad">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">03 / HOW I LEAD</p>
+            <h2>Platforms are products.<br /><span>Engineers are the users.</span></h2>
+          </div>
+          <p>
+            The work is judged by what other teams can do with it, not by how
+            clever it looks from the inside.
+          </p>
+        </div>
+        <!-- ASSUMPTION: headcount figures below — correct or remove -->
+        <div class="lead-stats">
+          <div><strong>~40</strong><span class="mono">ENGINEERS SERVED</span></div>
+          <div><strong>3</strong><span class="mono">PRODUCT TEAMS</span></div>
+          <div><strong>40+</strong><span class="mono">SHARED WORKFLOWS</span></div>
+          <div><strong>1,000+</strong><span class="mono">COMMITS IN PRODUCT REPOS</span></div>
+        </div>
+        <div class="lead-principles">
+          <article data-reveal>
+            <span class="mono">01</span>
+            <h3>Paved roads, not gates.</h3>
+            <p>
+              Automate the safe path so it is also the easy path. Keep human
+              approval for the one place it earns its cost — the step into
+              production.
+            </p>
+          </article>
+          <article data-reveal>
+            <span class="mono">02</span>
+            <h3>Build it to outlive me.</h3>
+            <p>
+              Design it, write it down, hand it over. The delivery-metrics
+              pilot I designed and handed off shipped and kept growing while I
+              was away from it — which is the only real test.
+            </p>
+          </article>
+          <article data-reveal>
+            <span class="mono">03</span>
+            <h3>Measure teams, never individuals.</h3>
+            <p>
+              Delivery data stays at cohort level: author identities hashed,
+              small cohorts dropped, no per-person dashboards. Metrics that
+              make people defensive stop telling you the truth.
+            </p>
+          </article>
+          <article data-reveal>
+            <span class="mono">04</span>
+            <h3>Still in the code.</h3>
+            <p>
+              Over a thousand commits in the product repositories alongside the
+              platform work. I would rather feel the friction my decisions
+              create than hear about it secondhand.
+            </p>
+          </article>
+        </div>
+      </section>
       <section id="experience" class="experience-section section-pad">
         <div class="section-shell">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">03 / THE JOURNEY</p>
+              <p class="eyebrow">04 / THE JOURNEY</p>
               <h2>Built on experience.<br />Always moving forward.</h2>
             </div>
             <a class="text-link" href="PalashSrivastava.pdf" download
@@ -782,7 +972,7 @@
       <section id="skills" class="toolkit-section section-shell section-pad">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">04 / THE TOOLKIT</p>
+            <p class="eyebrow">05 / THE TOOLKIT</p>
             <h2>The right tool.<br />For the actual problem.</h2>
           </div>
           <p>
@@ -1057,7 +1247,7 @@
         </div>
       </section>
       <section id="education" class="education-section section-shell">
-        <p class="eyebrow">05 / FOUNDATIONS</p>
+        <p class="eyebrow">06 / FOUNDATIONS</p>
         <div class="credentials">
           <article>
             <span class="mono">EDUCATION</span>
@@ -1083,7 +1273,7 @@
       <section id="contact" class="contact-section section-pad">
         <div class="section-shell contact-layout">
           <div class="contact-copy">
-            <p class="eyebrow">06 / NEXT CHAPTER</p>
+            <p class="eyebrow">07 / NEXT CHAPTER</p>
             <h2>Let’s build<br />something<br /><span>that lasts.</span></h2>
             <p>
               Looking for a platform, DevOps, or SRE leader who cares about the
