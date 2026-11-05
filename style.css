@@ -1204,8 +1204,8 @@ summary::-webkit-details-marker {
   padding: 30px 0;
   border-top: 1px solid var(--line);
   display: grid;
-  grid-template-columns: 105px 1fr;
-  gap: 28px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
 }
 .experience-row:first-child {
   padding-top: 0;
@@ -1214,8 +1214,8 @@ summary::-webkit-details-marker {
 .experience-date {
   font-size: 12px;
   color: var(--muted);
-  padding-top: 6px;
-  white-space: nowrap;
+  padding-top: 0;
+  white-space: normal;
 }
 .experience-row:first-child .experience-date {
   color: var(--accent);
@@ -2100,9 +2100,6 @@ summary::-webkit-details-marker {
   }
   .career-aside {
     display: none;
-  }
-  .experience-row {
-    grid-template-columns: 110px 1fr;
   }
   .tech-logo-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

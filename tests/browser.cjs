@@ -305,6 +305,14 @@ async function audit(page, label) {
             .map((el) => el.className)
         );
       assert.deepEqual(overflow, [], "Component overflow at " + width);
+      for (const row of await page.locator(".experience-row").all()) {
+        const date = await row.locator(".experience-date").boundingBox();
+        const role = await row.locator(":scope > div").nth(1).boundingBox();
+        assert(
+          date.y + date.height <= role.y,
+          "Experience date should sit above role details at " + width
+        );
+      }
       const smallType = await page
         .locator(".experience-date, .experience-tags")
         .evaluateAll((elements) =>

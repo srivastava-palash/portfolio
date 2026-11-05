@@ -177,7 +177,7 @@ I'm a hands-on reliability and platform leader with 9+ years building
 and operating scalable, production-grade infrastructure.
 
 CURRENT   : Head of Platform @ Constrafor, New York
-FOCUS     : Cloud architecture, CI/CD, SOC 2, cloud cost, developer experience
+FOCUS     : DevSecOps, AI infrastructure, reliability, security, FinOps
 LOOKING   : Platform / DevSecOps / SRE / FinOps leadership roles
 
 I thrive at the intersection of infrastructure, automation, and developer
@@ -204,7 +204,7 @@ observability:
   - SLOs / SLAs / Error Budgets
 
 security:
-  - SOC 2 Type II
+  - SOC 2 Type II readiness
   - IAM / RBAC
   - Network Security
   - Cost Optimization
@@ -213,7 +213,13 @@ leadership:
   - Team Building & Mentorship
   - OKR Planning
   - Hiring
-  - Cross-Team Collaboration`,
+  - Cross-Team Collaboration
+  - FinOps / Budgeting / Vendor Management
+
+ai_infrastructure:
+  - AWS Lambda / Step Functions
+  - AI-assisted PR risk assessment
+  - DevLake / PostHog`,
 
     "contact.env": `EMAIL="srivastavapalash0@gmail.com"
 PHONE="+1 (571) 236-0145"
@@ -223,33 +229,43 @@ LOCATION="New York, USA"
 OPEN_TO_OPPORTUNITIES=true
 PREFERRED_ROLES="Head of Platform, DevSecOps Manager, SRE Lead, FinOps Lead"`,
 
-    "experience.log": `[2024-06 → present] Constrafor :: Head of Platform / DevOps Manager
-  > SOC 2 Type II — security hardening, policies, remediation
-  > AWS spend reduced 50% through architectural optimization
+    "experience.log": `[2025-06 → present] Constrafor :: Head of Platform
+  > Monthly AWS spend reduced 50% while preserving capacity
+  > SOC 2 Type II readiness; Terraform-managed AWS and GitHub governance
+  > AI-assisted PR risk assessment across repositories
+  > Delivery visibility through DevLake and PostHog
+  > 25+ vendor contracts; $50–70K quarterly budget
+
+[2024-06 → 2025-05] Constrafor :: Senior DevOps Engineer
   > Backend re-architected for 5× traffic capacity
-  > GitLab → GitHub migration: 70% faster deployments
-  > Ephemeral PR-based review environments introduced
-  > Cru AI agent infra & deployment orchestration
+  > GitLab → GitHub migration: 70% less deployment time
+  > 40+ reusable workflows; PR environments with automated Cypress tests
+  > Cru AI infrastructure on Lambda and Step Functions; versioned rollback
 
-[2023-11 → 2024-05] CertiK :: Sr. Platform Engineer
-  > AWS service review: 15% cost savings identified & implemented
-  > IAM hardening, vulnerability remediation
-  > Vendor contract negotiations
+[2023-11 → 2024-05] CertiK :: Senior Platform Engineer
+  > AWS service review: 15% overall cost reduction
+  > Datadog monitor/test cleanup and team onboarding automation
+  > Reusable GitHub Actions workflows and product CI/CD
+  > EC2 security remediation; vendor contract negotiations
 
-[2022-01 → 2023-11] TS Imagine :: Cloud DevOps / SWE
-  > GCP migration POC: 20% efficiency ↑, 30% cost ↓
-  > Jenkins end-to-end CI/CD pipelines
-  > Docker Swarm → GKE migration
-  > Prometheus + Grafana observability stack built from scratch
+[2022-01 → 2023-11] TS Imagine :: Cloud DevOps Engineer / Software Engineer
+  > End-of-day VaR cloud POC: 20% efficiency ↑, 30% cost ↓
+  > Real-time VaR parity testing across GCP and on-premises
+  > Jenkins pipelines; DEV/PPE Docker Swarm → GKE migration
+  > Centralized Prometheus and Grafana monitoring
 
-[2019-09 → 2021-12] TS Imagine :: Site Reliability Engineer
-  > Production redesign for site-awareness: 70% faster failover
-  > Proactive monitoring & alerting system (Python)
-  > Docker Swarm across dev/UAT/prod
+[2019-09 → 2021-12] TS Imagine (Imagine Software) :: Technical Operations Engineer
+  > Site-aware production redesign: 70% less disaster recovery failover time
+  > Incident response and service recovery against SLA/SLO targets
+  > Python monitoring and trend analysis; Docker Swarm operations
 
-[2017-04 → 2019-09] FIS :: Derivatives Analyst → Programmer Analyst
-  > L2/L3 trading system support, ITRS Geneos alerting
-  > Oracle PL/SQL data models & ACBS suite development`,
+[2019-05 → 2019-09] FIS :: Programmer Analyst
+  > Oracle PL/SQL data models, reports, and interfaces
+  > Client requirements for ACBS suite development
+
+[2017-04 → 2019-05] FIS :: Derivatives Analyst
+  > ITRS Geneos alert monitoring
+  > L2/L3 support for trading stability`,
   };
 
   /* ── Command definitions ── */
@@ -446,7 +462,7 @@ PREFERRED_ROLES="Head of Platform, DevSecOps Manager, SRE Lead, FinOps Lead"`,
             cls: "dt-env",
             text: 'OBSERVABILITY="Datadog,Prometheus,Grafana,ELK"',
           },
-          { cls: "dt-env", text: 'COMPLIANCE="SOC2_TYPE_II=achieved"' },
+          { cls: "dt-env", text: 'COMPLIANCE="SOC2_TYPE_II=readiness"' },
           { cls: "dt-env", text: 'AWS_COST_REDUCTION="50%"' },
           { cls: "dt-env", text: 'DEPLOY_SPEEDUP="70%"' },
           { cls: "dt-env", text: 'TRAFFIC_SCALE="5x"' },
@@ -635,13 +651,16 @@ PREFERRED_ROLES="Head of Platform, DevSecOps Manager, SRE Lead, FinOps Lead"`,
             cls: "dt-info",
             text: "  Author: Palash Srivastava <srivastavapalash0@gmail.com>",
           },
-          { cls: "dt-info", text: "  Date:   Jun 2024 — present" },
+          { cls: "dt-info", text: "  Date:   Jun 2025 — present" },
           {
             cls: "dt-ok",
-            text: "    feat: head-of-platform @constrafor — SOC2, 50% cost ↓, 5× scale",
+            text: "    feat: head-of-platform @constrafor — SOC2 readiness, 50% cost ↓, AI-assisted reviews",
           },
           { cls: "dt-blank", text: "" },
           { cls: "dt-bright", text: "  commit b2e8d4f3" },
+          { cls: "dt-info", text: "  Date:   Jun 2024 — May 2025" },
+          { cls: "dt-ok", text: "    feat: senior-devops @constrafor — 5× capacity, 70% less deploy time, Cru AI" },
+          { cls: "dt-blank", text: "" },
           { cls: "dt-info", text: "  Date:   Nov 2023 — May 2024" },
           {
             cls: "dt-ok",
@@ -659,15 +678,18 @@ PREFERRED_ROLES="Head of Platform, DevSecOps Manager, SRE Lead, FinOps Lead"`,
           { cls: "dt-info", text: "  Date:   Sep 2019 — Dec 2021" },
           {
             cls: "dt-ok",
-            text: "    feat: sre @ts-imagine — 70% faster failover, Docker Swarm",
+            text: "    feat: technical-operations @ts-imagine — 70% less failover time, Docker Swarm",
           },
           { cls: "dt-blank", text: "" },
           { cls: "dt-bright", text: "  commit e9b5a1c0" },
-          { cls: "dt-info", text: "  Date:   Apr 2017 — Sep 2019" },
+          { cls: "dt-info", text: "  Date:   May 2019 — Sep 2019" },
           {
             cls: "dt-ok",
-            text: "    feat: derivatives-analyst @fis — L2/L3, ITRS Geneos, PL/SQL",
+            text: "    feat: programmer-analyst @fis — Oracle PL/SQL, ACBS",
           },
+          { cls: "dt-blank", text: "" },
+          { cls: "dt-info", text: "  Date:   Apr 2017 — May 2019" },
+          { cls: "dt-ok", text: "    feat: derivatives-analyst @fis — L2/L3, ITRS Geneos" },
           { cls: "dt-blank", text: "" },
         ]),
 
