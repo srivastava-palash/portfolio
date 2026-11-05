@@ -140,7 +140,7 @@ async function audit(page, label) {
       await summary.hover();
       assert.equal(
         await summary.evaluate((el) => getComputedStyle(el).backgroundColor),
-        "rgb(223, 232, 216)"
+        "rgb(214, 223, 234)"
       );
       assert(await summary.locator(".notes-expand").isVisible());
       await summary.click();
